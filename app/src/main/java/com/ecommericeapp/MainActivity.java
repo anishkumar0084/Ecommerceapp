@@ -12,7 +12,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize views
+        TextInputLayout nameInputLayout = findViewById(R.id.outlinedTextField);
+        TextInputLayout emailInputLayout = findViewById(R.id.outlinedTextField2);
 
+        // Get references to EditText fields
+        EditText nameEditText = nameInputLayout.getEditText();
+        EditText emailEditText = emailInputLayout.getEditText();
+
+        // Example: Set a hint for the name field
+        nameInputLayout.setHint("Name");
+
+        // Example: Set a hint for the email field
+        emailInputLayout.setHint("Email");
+
+        // You can add more logic here, such as handling user input or form submission.
     }
 }
 

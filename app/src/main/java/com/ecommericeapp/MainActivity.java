@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialize views
-        TextInputLayout nameInputLayout = findViewById(R.id.outlinedTextField);
-        TextInputLayout emailInputLayout = findViewById(R.id.outlinedTextField2);
+
+
 
         // Get references to EditText fields
         EditText nameEditText = nameInputLayout.getEditText();

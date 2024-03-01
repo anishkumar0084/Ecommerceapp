@@ -27,10 +27,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.ecommericeapp" />
+                  <option name="mobileSdkAppId" value="1:625545320423:android:aeae4779198c9252398f42" />
+                  <option name="projectId" value="ecommerice-app" />
+                  <option name="projectNumber" value="625545320423" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

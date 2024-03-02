@@ -17,5 +17,29 @@
         android:background="#E4E2E2" />
 
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_below="@+id/search"
+        android:layout_width="500dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="300dp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </RelativeLayout>

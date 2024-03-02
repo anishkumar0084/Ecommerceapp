@@ -57,14 +57,9 @@ public class Reg_page extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        FirebaseUser user=mAuth.getCurrentUser();
 
 
-        if (user!= null) {
-            // User is signed in, go to main activity
-            startActivity(new Intent(Reg_page.this, login_page.class));
-            finish();
-        }
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +106,9 @@ public class Reg_page extends AppCompatActivity {
                     User user = new User(name1, email1,password1,mobile1 );
                     mDatabase.child("users").child(userId).setValue(user);
 
-                    Intent intent=new Intent(Reg_page.this,login_page.class);
+                    Intent intent=new Intent(Reg_page.this,MainActivity.class);
                     startActivity(intent);
+                    finish();
 
                     Toast.makeText(Reg_page.this, "Registration successful",
                             Toast.LENGTH_SHORT).show();

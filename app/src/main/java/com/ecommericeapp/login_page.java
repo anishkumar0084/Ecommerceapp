@@ -23,11 +23,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class login_page extends AppCompatActivity {
+
     TextInputEditText emailEditText;
     TextInputEditText passwordEditText;
     FirebaseAuth mauth;
     DatabaseReference databaseReference;
     Button signInButton;
+    Button registrationButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class login_page extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         signInButton=findViewById(R.id.signInButton);
+        registrationButton=findViewById(R.id.registrationButton);
         mauth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
 

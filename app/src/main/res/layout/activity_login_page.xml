@@ -52,12 +52,20 @@
     android:layout_below="@id/passwordInputLayout"
     android:layout_marginTop="24dp"/>
 
+    <Button
+        android:id="@+id/registrationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registration"
+        android:layout_below="@id/signInButton"
+        android:layout_marginTop="24dp"/>
+
 
 <TextView
     android:id="@+id/textView3"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/signInButton"
+    android:layout_below="@id/registrationButton"
     android:layout_marginTop="28dp"
     android:text="Forgot password?" />
 </RelativeLayout>

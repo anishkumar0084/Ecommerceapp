@@ -41,13 +41,8 @@ public class login_page extends AppCompatActivity {
         mauth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
 
-        FirebaseUser user=mauth.getCurrentUser();
 
-        if (user!= null) {
-            // User is signed in, go to main activity
-            startActivity(new Intent(login_page.this, MainActivity.class));
-            finish();
-        }
+
 
 
 

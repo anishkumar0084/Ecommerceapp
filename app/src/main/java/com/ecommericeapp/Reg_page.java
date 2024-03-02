@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -56,6 +57,14 @@ public class Reg_page extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user=mAuth.getCurrentUser();
+
+
+        if (user!= null) {
+            // User is signed in, go to main activity
+            startActivity(new Intent(Reg_page.this, login_page.class));
+            finish();
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

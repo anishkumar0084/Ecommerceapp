@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "625545320423",
+    "project_id": "ecommerice-app",
+    "storage_bucket": "ecommerice-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625545320423:android:aeae4779198c9252398f42",
+        "android_client_info": {
+          "package_name": "com.ecommericeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtZopvArhavw4W9JriRM1hn5lIuD_6ggw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

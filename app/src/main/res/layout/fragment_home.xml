@@ -8,15 +8,17 @@
     tools:context=".Fragment.Home">
 
 
-
     <SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#E4E2E2"
         android:queryHint="Search..."
-        android:textColorHint="@color/black"
-        android:layout_margin="10dp"
-        android:background="#E4E2E2" />
+        android:textColorHint="@color/black" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"

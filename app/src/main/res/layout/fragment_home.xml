@@ -18,6 +18,16 @@
         android:layout_margin="10dp"
         android:background="#E4E2E2" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#C8B6B6"
+        app:cardCornerRadius="10dp"
+        android:layout_below="@+id/search"
+        >
+
+
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider"
@@ -37,10 +47,13 @@
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="1" />
 
+    </androidx.cardview.widget.CardView>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product"
         android:layout_width="match_parent"
-        android:layout_below="@+id/slider"
+        android:layout_below="@+id/card"
         android:layout_height="match_parent"/>
 
 

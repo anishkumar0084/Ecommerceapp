@@ -20,6 +20,8 @@ public class ProductDetail extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             String productId = intent.getStringExtra("ans");
+            String price = intent.getStringExtra("price");
+            String title = intent.getStringExtra("title");
             Glide.with(this)
                     .load(productId)
                     .into(imageView);

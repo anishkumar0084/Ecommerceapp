@@ -173,6 +173,9 @@ public class Home extends Fragment implements Clicklistner {
     public void onItemclick(productDetail productDetail) {
         Intent intent=new Intent(getContext(), ProductDetail.class);
         intent.putExtra("ans",productDetail.getImage());
+        intent.putExtra("title",productDetail.getTitle());
+        intent.putExtra("price",productDetail.getPrice());
+
         startActivity(intent);
         Toast.makeText(getActivity(),"tes"+productDetail.getTitle(),Toast.LENGTH_SHORT).show();
 

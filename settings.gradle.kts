@@ -1,7 +1,11 @@
+import org.gradle.kotlin.dsl.maven
+
 pluginManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jcenter.bintray.com")
+
         gradlePluginPortal()
     }
 }
@@ -10,6 +14,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jcenter.bintray.com")
+
+
     }
 }
 

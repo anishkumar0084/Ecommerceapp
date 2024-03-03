@@ -22,16 +22,17 @@
         android:layout_marginTop="16dp">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-             android:layout_gravity="center"/>
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/order_image"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="Orders"
-            android:textSize="30sp"
-            android:layout_marginStart="8dp"/>
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -43,15 +44,16 @@
         android:layout_marginTop="16dp">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/wishlist_image"
              android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wishlist"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
@@ -64,15 +66,16 @@
         android:layout_marginTop="16dp">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/coupons_image"
              android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Coupons"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
@@ -85,16 +88,16 @@
         android:layout_marginTop="16dp">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/customercare_img"
             android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Help Center"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
@@ -103,7 +106,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="145dp"
-        android:layout_marginBottom="30dp"
-        android:text="Logout"/>
+        android:layout_marginBottom="35dp"
+        android:text="Logout" />
 </RelativeLayout>

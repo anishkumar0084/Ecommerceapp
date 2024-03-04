@@ -136,7 +136,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/round_account_box_24" />
+            android:src="@drawable/editprofile" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -159,7 +159,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
 
-            android:src="@drawable/baseline_edit_location_alt_24" />
+            android:src="@drawable/saved_address" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -167,6 +167,50 @@
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:text="Saved Address"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/saved_address"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/review" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="25dp"
+            android:text="Review"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/payment_method"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/review"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/payment" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="25dp"
+            android:text="Payment Method"
             android:textSize="20sp" />
     </LinearLayout>
 

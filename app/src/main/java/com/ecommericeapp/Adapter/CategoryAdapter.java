@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ecommericeapp.Data.Categorydata;
 import com.ecommericeapp.R;
+import com.ecommericeapp.categorylisner;
 
 import java.util.List;
 
@@ -21,9 +22,11 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewholder> {
     Context context;
     List<Categorydata> categorydata;
-    public CategoryAdapter(Context context,List<Categorydata> categorydata) {
+    private categorylisner categorylisner;
+    public CategoryAdapter(Context context,List<Categorydata> categorydata,categorylisner categorylisner) {
         this.context=context;
         this.categorydata=categorydata;
+        this.categorylisner= categorylisner;
     }
 
     @NonNull
@@ -47,6 +50,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                categorylisner.onItemclick(categorydata.get(position));
 
             }
         });

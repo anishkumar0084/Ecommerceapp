@@ -46,6 +46,7 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
 
             }
         });
+
         recyclerView=findViewById(R.id.productshirt);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
@@ -53,13 +54,18 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
 
         myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
 
-        String[] categoryNames = {"shirt"};
+        Intent intent=getIntent();
+        String categoryName = getIntent().getStringExtra("categoryName");
 
-        // Fetch data from each category
-        for (String categoryName : categoryNames) {
+        if (categoryName != null && !categoryName.isEmpty()) {
             DatabaseReference categoryRef = myRef1.child(categoryName);
             fetchDataFromNode(categoryName, categoryRef);
+        } else {
+            Toast.makeText(this, "Category name not found", Toast.LENGTH_SHORT).show();
         }
+
+
+
 
         recyclerView.setAdapter(home);
 
@@ -71,10 +77,19 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Accessing properties like 'id', 'image', and 'title'
                     String id = snapshot.child("id").getValue(String.class);
-                    String image = snapshot.child("image").getValue(String.class);
                     String title = snapshot.child("title").getValue(String.class);
                     String price = snapshot.child("price").getValue(String.class);
-                    productDetails.add(new productDetail(id,title,price,image));
+                    String shrtimage = snapshot.child("shrtimage").getValue(String.class);
+                    String image1 = snapshot.child("image1").getValue(String.class);
+                    String image2 = snapshot.child("image2").getValue(String.class);
+                    String image3= snapshot.child("image3").getValue(String.class);
+                    String image4= snapshot.child("image4").getValue(String.class);
+                    String discount= snapshot.child("discount").getValue(String.class);
+                    String deliverycharge= snapshot.child("deliverycharge").getValue(String.class);
+                    String shrtdesc= snapshot.child("shrtdesc").getValue(String.class);
+                    String offer= snapshot.child("offer").getValue(String.class);
+                    productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc));
+
 
                 }
                 home.notifyDataSetChanged();
@@ -91,7 +106,7 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
     @Override
     public void onItemclick(productDetail productDetail) {
         Intent intent=new Intent(this, ProductDetail.class);
-        intent.putExtra("ans",productDetail.getImage());
+        intent.putExtra("ans",productDetail.getSrt_image());
         intent.putExtra("title",productDetail.getTitle());
         intent.putExtra("price",productDetail.getPrice());
 

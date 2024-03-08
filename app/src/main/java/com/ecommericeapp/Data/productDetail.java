@@ -1,7 +1,22 @@
 package com.ecommericeapp.Data;
 
 public class productDetail {
-    String id,title,price,image,discount,Delivery_charge;
+    String id,title,price,srt_image,image1,image2,image3,image4,discount,Delivery_charge,offer,srt_desc;
+
+    public productDetail(String id, String title, String price, String srt_image, String image1, String image2, String image3, String image4, String discount, String delivery_charge, String offer, String srt_desc) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.srt_image = srt_image;
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        this.image4 = image4;
+        this.discount = discount;
+        Delivery_charge = delivery_charge;
+        this.offer = offer;
+        this.srt_desc = srt_desc;
+    }
 
     public String getId() {
         return id;
@@ -27,23 +42,75 @@ public class productDetail {
         this.price = price;
     }
 
-    public String getImage() {
-        return image;
+    public String getSrt_image() {
+        return srt_image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setSrt_image(String srt_image) {
+        this.srt_image = srt_image;
     }
 
-    public productDetail(String id, String title, String price, String image) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-        this.image = image;
+    public String getImage1() {
+        return image1;
     }
 
+    public void setImage1(String image1) {
+        this.image1 = image1;
+    }
 
+    public String getImage2() {
+        return image2;
+    }
 
+    public void setImage2(String image2) {
+        this.image2 = image2;
+    }
 
+    public String getImage3() {
+        return image3;
+    }
 
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public String getImage4() {
+        return image4;
+    }
+
+    public void setImage4(String image4) {
+        this.image4 = image4;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public String getDelivery_charge() {
+        return Delivery_charge;
+    }
+
+    public void setDelivery_charge(String delivery_charge) {
+        Delivery_charge = delivery_charge;
+    }
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
+
+    public String getSrt_desc() {
+        return srt_desc;
+    }
+
+    public void setSrt_desc(String srt_desc) {
+        this.srt_desc = srt_desc;
+    }
 }

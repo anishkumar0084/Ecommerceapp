@@ -56,7 +56,7 @@ public class Home  extends RecyclerView.Adapter<Home.viewholder>{
 
 
         Glide.with(holder.itemView)
-                .load(data.getImage())
+                .load(data.getSrt_image())
                 .fitCenter()
                 .into(holder.image);
 

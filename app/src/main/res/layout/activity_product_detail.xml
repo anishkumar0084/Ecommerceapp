@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ProductDetail">
 
-    <!-- product_detail_layout.xml -->
 
 
         <ImageView

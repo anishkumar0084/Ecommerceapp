@@ -54,12 +54,9 @@ public class Home extends Fragment implements Clicklistner {
 
 
     }
-    private List<SliderData> imageList;
-    private ViewPager viewPager;
-    private SliderAdapter adapter;
+
     ArrayList<productDetail> productDetails=new ArrayList<>();
     RecyclerView recyclerView;
-    DatabaseReference shirtRef;
     DatabaseReference myRef1;
     com.ecommericeapp.Adapter.Home home;
 

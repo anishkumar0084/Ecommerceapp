@@ -1,6 +1,8 @@
 package com.ecommericeapp.Data;
 
 public class productDetail {
+    String id,title,price,image,discount,Delivery_charge;
+
     public String getId() {
         return id;
     }
@@ -33,7 +35,6 @@ public class productDetail {
         this.image = image;
     }
 
-    String id,title,price,image;
     public productDetail(String id, String title, String price, String image) {
         this.id = id;
         this.title = title;

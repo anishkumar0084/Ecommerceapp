@@ -1,5 +1,6 @@
 package com.ecommericeapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,8 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ecommericeapp.R;
+import com.ecommericeapp.databinding.FragmentAccountBinding;
+import com.ecommericeapp.saved_address;
 
 public class Account extends Fragment {
+
+    private FragmentAccountBinding binding;
 
 
     public Account() {
@@ -28,6 +33,22 @@ public class Account extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        binding = FragmentAccountBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        binding.savedAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), saved_address.class);
+                startActivity(intent);
+
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null; // Release the binding instance
     }
 }

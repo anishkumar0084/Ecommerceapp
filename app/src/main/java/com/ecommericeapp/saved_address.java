@@ -9,6 +9,6 @@ public class saved_address extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_saved_address);
+        setContentView(R.layout.activity_save_address);
     }
 }

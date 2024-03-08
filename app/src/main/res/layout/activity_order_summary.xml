@@ -6,158 +6,257 @@
     android:layout_height="match_parent"
     tools:context=".OrderSummary">
     <LinearLayout
-        android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/arrow">
-        </ImageView>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text=" Order Summary"
-            android:textSize="30dp"
-            android:gravity="">
-        </TextView>
-    </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/address"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/linear"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-        <EditText
-            android:id="@+id/textdelivery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text ="deliver to:"
-            android:textSize ="25dp">
-        </EditText>
-
-        <Button
-            android:layout_width="124dp"
-            android:layout_height="59dp"
-            android:layout_gravity="end"
-            android:text="change"
-            android:layout_alignParentRight="true"
-            android:textSize="20dp"
-            >
-        </Button>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" Username"
-            android:layout_below="@+id/textdelivery"
-            >
-        </EditText>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/productdetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/address"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/primage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            >
-        </ImageView>
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="70dp"
-            android:text="Qty"
-            >
-        </Button>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/productdetails"
-        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Price Details"
-            android:textSize="30dp"
-            >
-        </TextView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="price"
-            android:textSize="30dp"
-            >
-        </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="discount"
-                android:textSize="30dp"
-                >
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delivery Charges"
-                android:textSize="30dp"
-                >
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total Amount"
-                android:textStyle="bold"
-                android:textSize="30dp"
-                >
-            </TextView>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/price">
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:hint="price"
-            android:textSize="50dp">
-        </EditText>
+            android:orientation="horizontal"
+            android:weightSum="3">
 
-        <Button
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Address"
+                android:textColor="#A095B4"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Order Summary"
+                android:textColor="#021684"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Payment"
+                android:textColor="#A095B4"/>
+
+        </LinearLayout>
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Continue"
-            android:layout_alignParentRight="true"
-            >
-        </Button>
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Deliver to:"
+            android:textColor="#A095B4"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="User name (Home,work)"
+            android:textColor="#021684"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="#address#"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="#Phone Number#"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Change"
+            android:textColor="#021684"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="181dp"
+                android:layout_weight="1"
+                android:src="@drawable/example_productimg" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product name"
+                    android:textColor="#021684"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="details"
+                    android:textColor="#A095B4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Qty: 1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="43% ₹2200 "
+                    android:textColor="#021684"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="5 Offers Applied . 2 Offers Available"
+                    android:textColor="#A095B4" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Delivery by Sun Mar 10 |₹40 FREE Delivery"
+            android:textColor="#A095B4"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price Details"
+                android:textColor="#021684"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Price (1 item)"
+                android:textColor="#A095B4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="₹4,995"
+                android:textColor="#021684"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Discount"
+                android:textColor="#A095B4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="-₹2,196"
+                android:textColor="#021684"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Delivery Charges"
+                android:textColor="#A095B4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="₹40 FREE Delivery"
+                android:textColor="#021684"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Total Amount"
+                android:textColor="#A095B4"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="₹2,799"
+                android:textColor="#021684"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="You will save ₹2,196 on this order"
+                android:textColor="#00FF00"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="32dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shield_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Safe and secure payments. Easy returns. \n100% Authentic products."
+                    android:textColor="#A095B4"/>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="#DAC03E"
+                android:text="Continue"
+                android:textColor="#00BFA5"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
 </RelativeLayout>

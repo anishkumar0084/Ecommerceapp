@@ -54,12 +54,9 @@ public class Home extends Fragment implements Clicklistner {
 
 
     }
-    private List<SliderData> imageList;
-    private ViewPager viewPager;
-    private SliderAdapter adapter;
+
     ArrayList<productDetail> productDetails=new ArrayList<>();
     RecyclerView recyclerView;
-    DatabaseReference shirtRef;
     DatabaseReference myRef1;
     com.ecommericeapp.Adapter.Home home;
 
@@ -152,10 +149,18 @@ public class Home extends Fragment implements Clicklistner {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Accessing properties like 'id', 'image', and 'title'
                     String id = snapshot.child("id").getValue(String.class);
-                    String image = snapshot.child("image").getValue(String.class);
                     String title = snapshot.child("title").getValue(String.class);
                     String price = snapshot.child("price").getValue(String.class);
-                    productDetails.add(new productDetail(id,title,price,image));
+                    String shrtimage = snapshot.child("price").getValue(String.class);
+                    String image1 = snapshot.child("price").getValue(String.class);
+                    String image2 = snapshot.child("price").getValue(String.class);
+                    String image3= snapshot.child("price").getValue(String.class);
+                    String image4= snapshot.child("price").getValue(String.class);
+                    String discount= snapshot.child("price").getValue(String.class);
+                    String deliverycharge= snapshot.child("price").getValue(String.class);
+                    String shrtdesc= snapshot.child("price").getValue(String.class);
+                    String offer= snapshot.child("price").getValue(String.class);
+                    productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc));
 
                 }
                 home.notifyDataSetChanged();
@@ -172,12 +177,11 @@ public class Home extends Fragment implements Clicklistner {
     @Override
     public void onItemclick(productDetail productDetail) {
         Intent intent=new Intent(getContext(), ProductDetail.class);
-        intent.putExtra("ans",productDetail.getImage());
+        intent.putExtra("ans",productDetail.getImage1());
         intent.putExtra("title",productDetail.getTitle());
         intent.putExtra("price",productDetail.getPrice());
 
         startActivity(intent);
-        Toast.makeText(getActivity(),"tes"+productDetail.getTitle(),Toast.LENGTH_SHORT).show();
 
 
 

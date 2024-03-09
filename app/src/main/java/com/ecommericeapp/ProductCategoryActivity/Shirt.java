@@ -54,7 +54,6 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
 
         myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
 
-        Intent intent=getIntent();
         String categoryName = getIntent().getStringExtra("categoryName");
 
         if (categoryName != null && !categoryName.isEmpty()) {
@@ -88,7 +87,8 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
                     String deliverycharge= snapshot.child("deliverycharge").getValue(String.class);
                     String shrtdesc= snapshot.child("shrtdesc").getValue(String.class);
                     String offer= snapshot.child("offer").getValue(String.class);
-                    productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc));
+                    String size= snapshot.child("offer").getValue(String.class);
+                    productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc,size));
 
 
                 }

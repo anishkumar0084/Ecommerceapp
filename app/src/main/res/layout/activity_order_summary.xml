@@ -131,6 +131,7 @@
                     android:textColor="#A095B4" />
 
                 <TextView
+                    android:id="@+id/quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -178,6 +179,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/price2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -185,7 +187,7 @@
                 android:textColor="#A095B4"/>
 
             <TextView
-                android:id="@+id/prices"
+                android:id="@+id/pricesk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

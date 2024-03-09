@@ -1,14 +1,36 @@
 package com.ecommericeapp.Data;
 
 public class productDetail {
-    String id,title,price,srt_image,image1,image2,image3,image4,discount,Delivery_charge,offer,srt_desc;
+    String id;
+    String title;
+    String price;
+    String srt_image;
+    String image1;
+    String image2;
+    String image3;
+    String image4;
+    String discount;
+    String Delivery_charge;
+    String offer;
+    String srt_desc;
 
-    public productDetail(String id, String title, String price, String srt_image, String image1, String image2, String image3, String image4, String discount, String delivery_charge, String offer, String srt_desc) {
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    String size;
+
+    public productDetail(String id, String title, String price, String srt_image, String image1, String image2, String image3, String image4, String discount, String delivery_charge, String offer, String srt_desc,String size) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.srt_image = srt_image;
         this.image1 = image1;
+        this.size=size;
         this.image2 = image2;
         this.image3 = image3;
         this.image4 = image4;

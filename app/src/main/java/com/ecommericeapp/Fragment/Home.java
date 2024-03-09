@@ -185,7 +185,8 @@ public class Home extends Fragment implements Clicklistner {
                     String deliverycharge= snapshot.child("price").getValue(String.class);
                     String shrtdesc= snapshot.child("price").getValue(String.class);
                     String offer= snapshot.child("price").getValue(String.class);
-                    productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc));
+                    String size= snapshot.child("price").getValue(String.class);
+                    productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc,size));
 
                 }
                 home.notifyDataSetChanged();

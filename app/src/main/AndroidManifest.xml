@@ -16,6 +16,15 @@
         android:theme="@style/Theme.EcommericeApp"
         tools:targetApi="31">
         <activity
+            android:name=".Editprofile"
+            android:exported="false" />
+        <activity
+            android:name=".editProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Orderhistory"
+            android:exported="false" />
+        <activity
             android:name=".ProductCategoryActivity.Shirt"
             android:exported="false" />
         <activity android:name=".saved_address" />

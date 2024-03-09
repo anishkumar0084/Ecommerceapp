@@ -29,6 +29,8 @@ public class ProductDetail extends AppCompatActivity {
 
     Button Cart,Buy;
     String url,price,title;
+    String sizes;
+    String quantitys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,19 @@ public class ProductDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent1=new Intent(ProductDetail.this, OrderSummary.class);
-                intent1.putExtra("ans",url);
-                intent1.putExtra("price",price);
-                intent1.putExtra("title",title);
+                intent1.putExtra("ans", url)
+                        .putExtra("price", price)
+                        .putExtra("title", title)
+                         . putExtra("sizes", sizes)
+                        .putExtra("quantity",quantitys)
+
+
+
+
+
+                ;
+
+
                 startActivity(intent1);
 
 
@@ -145,14 +157,21 @@ public class ProductDetail extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedValue = parentView.getItemAtPosition(position).toString();
-                // Perform tasks based on the selected value
+
                 if (selectedValue.equals("1")) {
+                    quantitys="1";
 
                 } else if (selectedValue.equals("2")) {
-                    Toast.makeText(getApplicationContext(), "Value 2 selected", Toast.LENGTH_SHORT).show();
+                    quantitys="2";
+
                 } else if (selectedValue.equals("3")) {
-                    Toast.makeText(getApplicationContext(), "Value 3 selected", Toast.LENGTH_SHORT).show();
+                    quantitys="3";
+
+                }else  {
+
+
                 }
+
             }
 
             @Override
@@ -165,13 +184,20 @@ public class ProductDetail extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedValue = parentView.getItemAtPosition(position).toString();
                 // Perform tasks based on the selected value
-                if (selectedValue.equals("1")) {
+                if (selectedValue.equals("M")) {
+                    sizes="M";
 
-                } else if (selectedValue.equals("2")) {
-                    Toast.makeText(getApplicationContext(), "Value 2 selected", Toast.LENGTH_SHORT).show();
-                } else if (selectedValue.equals("3")) {
-                    Toast.makeText(getApplicationContext(), "Value 3 selected", Toast.LENGTH_SHORT).show();
+                } else if (selectedValue.equals("X")) {
+                    sizes="X";
+
+                } else if (selectedValue.equals("L")) {
+                    sizes="L";
+                }else {
+                    sizes="XL";
+
+
                 }
+
             }
 
             @Override

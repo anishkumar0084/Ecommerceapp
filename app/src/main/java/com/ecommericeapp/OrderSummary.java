@@ -47,6 +47,7 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
     String url,price,title;
 
     String name,address_type,state,city,pin_code,house_no,road_name,phone;
+    String sizes,quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +60,20 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
             url = intent.getStringExtra("ans");
             price = intent.getStringExtra("price");
             title = intent.getStringExtra("title");
+            sizes= intent.getStringExtra("sizes");
+            quantity= intent.getStringExtra("quantity");
             binding.title.setText(title);
             binding.price.setText(price);
+            binding.quantity.setText("sizes:"+sizes);
+            binding.price2.setText("Price("+quantity+"item)");
+
+            int int1=Integer.parseInt(quantity);
+            int int2=Integer.parseInt(price);
+            int total=int1*int2;
+            String totals=String.valueOf(total);
+            binding.pricesk.setText(totals);
+
+
             Glide.with(this)
                     .load(url)
                     .into(binding.productimage);
@@ -182,6 +195,8 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
     @Override
     public void onPaymentSuccess(String s) {
         Toast.makeText(this, "Payment is successful : " + s, Toast.LENGTH_SHORT).show();
+
+
 
 
     }

@@ -127,13 +127,38 @@ public class Home extends Fragment implements Clicklistner {
 
          myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
 
-        String[] categoryNames = {"shirt", "jeans", "mobile"};
+//        String[] categoryNames = {"shirt", "jeans", "mobile"};
 
-        // Fetch data from each category
-        for (String categoryName : categoryNames) {
-            DatabaseReference categoryRef = myRef1.child(categoryName);
-            fetchDataFromNode(categoryName, categoryRef);
-        }
+//        // Fetch data from each category
+//        for (String categoryName : categoryNames) {
+//            DatabaseReference categoryRef = myRef1.child(categoryName);
+//            fetchDataFromNode(categoryName, categoryRef);
+//        }
+        // Define an ArrayList to store category names
+        ArrayList<String> categoryNamesList = new ArrayList<>();
+
+// Fetch category names from Firebase
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
+                    String categoryName = categorySnapshot.getKey();
+                    categoryNamesList.add(categoryName);
+                }
+
+                // Now you have all category names, proceed with fetching data for each category
+                for (String categoryName : categoryNamesList) {
+                    DatabaseReference categoryRef = myRef1.child(categoryName);
+                    fetchDataFromNode(categoryName, categoryRef);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle onCancelled event
+            }
+        });
+
 
         recyclerView.setAdapter(home);
 
@@ -151,7 +176,7 @@ public class Home extends Fragment implements Clicklistner {
                     String id = snapshot.child("id").getValue(String.class);
                     String title = snapshot.child("title").getValue(String.class);
                     String price = snapshot.child("price").getValue(String.class);
-                    String shrtimage = snapshot.child("price").getValue(String.class);
+                    String shrtimage = snapshot.child("shrtimage").getValue(String.class);
                     String image1 = snapshot.child("price").getValue(String.class);
                     String image2 = snapshot.child("price").getValue(String.class);
                     String image3= snapshot.child("price").getValue(String.class);

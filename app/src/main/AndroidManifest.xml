@@ -15,8 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EcommericeApp"
         tools:targetApi="31">
+        <activity
+            android:name=".ProductCategoryActivity.Shirt"
+            android:exported="false" />
         <activity android:name=".saved_address" />
-        <activity android:name=".OrderSummary"/>
+        <activity android:name=".OrderSummary" />
         <activity
             android:name=".payment"
             android:exported="false" />

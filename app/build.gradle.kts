@@ -43,11 +43,13 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-database:20.3.1")
+    implementation("androidx.activity:activity:1.8.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.github.smarteist:autoimageslider:1.3.9")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.razorpay:checkout:1.6.33")
 
 
 

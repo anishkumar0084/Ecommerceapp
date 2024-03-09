@@ -1,5 +1,6 @@
 package com.ecommericeapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,10 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ecommericeapp.Adapter.CategoryAdapter;
 import com.ecommericeapp.Data.Categorydata;
+import com.ecommericeapp.ProductCategoryActivity.Jeans;
+import com.ecommericeapp.ProductCategoryActivity.Shirt;
 import com.ecommericeapp.R;
+import com.ecommericeapp.categorylisner;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class categories extends Fragment {
+public class categories extends Fragment implements categorylisner {
 
 
 
@@ -61,7 +66,7 @@ public class categories extends Fragment {
 
                 }
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-                CategoryAdapter categoryAdapter=new CategoryAdapter(getContext(),categorydata1);
+                CategoryAdapter categoryAdapter=new CategoryAdapter(getContext(),categorydata1,categories.this);
                 recyclerView.setAdapter(categoryAdapter);
                 categoryAdapter.notifyDataSetChanged();
 
@@ -75,5 +80,17 @@ public class categories extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onItemclick(Categorydata categorydata) {
+        String categoryName = categorydata.getName().toString();
+        Intent intent = new Intent(getContext(), Shirt.class);
+        intent.putExtra("categoryName", categoryName);
+        startActivity(intent);
+
+
+
+
     }
 }

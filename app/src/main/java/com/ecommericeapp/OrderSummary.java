@@ -1,17 +1,22 @@
 package com.ecommericeapp;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.ecommericeapp.Adapter.ProductAdapter;
@@ -25,11 +30,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderSummary extends AppCompatActivity {
+public class OrderSummary extends AppCompatActivity implements PaymentResultListener {
 
     ImageView imageView;
     private ActivityOrderSummaryBinding binding;
@@ -127,5 +137,59 @@ public class OrderSummary extends AppCompatActivity {
 
             }
         });
+        // adding on click listener to our button.
+        binding.continuef.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Checkout.preload(getApplicationContext());
+                Checkout checkout=new Checkout();
+
+                checkout.setKeyID("<YOUR_KEY_ID>");
+
+                try {
+                    JSONObject options = new JSONObject();
+
+                    options.put("name", "Merchant Name");
+                    options.put("description", "Reference No. #123456");
+                    options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
+                    options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
+                    options.put("theme.color", "#3399cc");
+                    options.put("currency", "INR");
+                    options.put("amount", "50000");//pass amount in currency subunits
+                    options.put("prefill.email", "anggsheskfmeskihsinghjamsar@gmail.com");
+                    options.put("prefill.contact","9988776655737");
+                    JSONObject retryObj = new JSONObject();
+                    retryObj.put("enabled", true);
+                    retryObj.put("max_count", 4);
+                    options.put("retry", retryObj);
+
+                    checkout.open(OrderSummary.this,options);
+
+                } catch(Exception e) {
+                    Log.e(TAG, "Error in starting Razorpay Checkout", e);
+                }
+
+
+
+
+
+
+
+            }
+        });
+    }
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        Toast.makeText(this, "Payment is successful : " + s, Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Toast.makeText(this, "Payment Failed due to error : " + s, Toast.LENGTH_SHORT).show();
+
+
     }
 }

@@ -181,7 +181,7 @@ public class Home extends Fragment implements Clicklistner {
                     String image2 = snapshot.child("price").getValue(String.class);
                     String image3= snapshot.child("price").getValue(String.class);
                     String image4= snapshot.child("price").getValue(String.class);
-                    String discount= snapshot.child("price").getValue(String.class);
+                    String discount= snapshot.child("Discount").getValue(String.class);
                     String deliverycharge= snapshot.child("price").getValue(String.class);
                     String shrtdesc= snapshot.child("price").getValue(String.class);
                     String offer= snapshot.child("price").getValue(String.class);
@@ -203,9 +203,18 @@ public class Home extends Fragment implements Clicklistner {
     @Override
     public void onItemclick(productDetail productDetail) {
         Intent intent=new Intent(getContext(), ProductDetail.class);
-        intent.putExtra("ans",productDetail.getImage1());
-        intent.putExtra("title",productDetail.getTitle());
-        intent.putExtra("price",productDetail.getPrice());
+        intent.putExtra("ans",productDetail.getSrt_image())
+        .putExtra("title",productDetail.getTitle())
+        .putExtra("price",productDetail.getPrice())
+        .putExtra("Discount",productDetail.getDiscount())
+        .putExtra("charge",productDetail.getDelivery_charge())
+        .putExtra("offer",productDetail.getOffer())
+        .putExtra("size",productDetail.getSize())
+        .putExtra("sht_d",productDetail.getSrt_desc())
+
+
+        ;
+
 
         startActivity(intent);
 

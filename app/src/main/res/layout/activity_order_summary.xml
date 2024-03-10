@@ -124,6 +124,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/shrt_des"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -147,6 +148,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -203,6 +205,7 @@
                 android:textColor="#A095B4"/>
 
             <TextView
+                android:id="@+id/Discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -218,6 +221,7 @@
                 android:textColor="#A095B4"/>
 
             <TextView
+                android:id="@+id/charge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

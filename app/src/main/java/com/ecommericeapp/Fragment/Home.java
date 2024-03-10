@@ -176,16 +176,16 @@ public class Home extends Fragment implements Clicklistner {
                     String id = snapshot.child("id").getValue(String.class);
                     String title = snapshot.child("title").getValue(String.class);
                     String price = snapshot.child("price").getValue(String.class);
-                    String shrtimage = snapshot.child("shrtimage").getValue(String.class);
+                    String shrtimage = snapshot.child("srt_image").getValue(String.class);
                     String image1 = snapshot.child("price").getValue(String.class);
                     String image2 = snapshot.child("price").getValue(String.class);
                     String image3= snapshot.child("price").getValue(String.class);
                     String image4= snapshot.child("price").getValue(String.class);
-                    String discount= snapshot.child("Discount").getValue(String.class);
-                    String deliverycharge= snapshot.child("price").getValue(String.class);
-                    String shrtdesc= snapshot.child("price").getValue(String.class);
-                    String offer= snapshot.child("price").getValue(String.class);
-                    String size= snapshot.child("price").getValue(String.class);
+                    String discount= snapshot.child("discount").getValue(String.class);
+                    String deliverycharge= snapshot.child("Delivery_charge").getValue(String.class);
+                    String shrtdesc= snapshot.child("srt_desc").getValue(String.class);
+                    String offer= snapshot.child("offer").getValue(String.class);
+                    String size= snapshot.child("size").getValue(String.class);
                     productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc,size));
 
                 }

@@ -36,8 +36,11 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderSummary extends AppCompatActivity implements PaymentResultListener {
 
@@ -71,13 +74,19 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
             binding.shrtDes.setText(sht_d);
 
 
+
             binding.title.setText(title);
             binding.price.setText("₹ "+price);
             binding.quantity.setText("sizes:"+sizes);
             binding.price2.setText("Price("+quantity+" item)");
-            binding.Discount.setText("₹ "+Discount);
 
             int int1=Integer.valueOf(quantity);
+            int into = Integer.parseInt(Discount);
+            int total_dis=int1*into;
+            Discount=String.valueOf(total_dis);
+            binding.Discount.setText("₹ "+Discount);
+            binding.save3.setText("You will save ₹"+Discount+"on this order");
+
             if (price != null) {
                 int int2 = Integer.parseInt(price);
                 int total=int1*int2;
@@ -221,6 +230,25 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
 
             }
         });
+
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.DAY_OF_MONTH, 7);
+//        // Get day of the week as a string (e.g., "Monday")
+//        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+//        String dayOfWeek = dayFormat.format(calendar.getTime());
+//        // Get month as a string (e.g., "March")
+//        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
+//        String month = monthFormat.format(calendar.getTime());
+//        // Get day of the month
+//        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+////        // Get year
+////        int year = calendar.get(Calendar.YEAR);
+//
+//        // Create a string to display in the TextView
+//        String currentDate = dayOfWeek + ", " + month + " " + dayOfMonth  ;
+//        binding.deliverdate.setText(currentDate);
+
+
     }
 
     @Override

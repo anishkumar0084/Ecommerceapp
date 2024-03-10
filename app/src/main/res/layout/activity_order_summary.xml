@@ -160,6 +160,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/deliverdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -246,6 +247,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/save3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

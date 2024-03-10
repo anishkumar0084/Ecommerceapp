@@ -28,7 +28,7 @@ public class ProductDetail extends AppCompatActivity {
     Spinner quantity,size;
 
     Button Cart,Buy;
-    String url,price,title;
+    String url,price,title,Discount,charge,offer,sizek,sht_d;
     String sizes;
     String quantitys;
 
@@ -46,6 +46,12 @@ public class ProductDetail extends AppCompatActivity {
              url = intent.getStringExtra("ans");
             price = intent.getStringExtra("price");
             title = intent.getStringExtra("title");
+            offer = intent.getStringExtra("offer");
+            charge = intent.getStringExtra("charge");
+            sizek = intent.getStringExtra("size");
+            sht_d= intent.getStringExtra("sht_d");
+            Discount= intent.getStringExtra("Discount");
+
             title1.setText(title);
             price2.setText(price);
             Glide.with(this)
@@ -67,6 +73,11 @@ public class ProductDetail extends AppCompatActivity {
                         .putExtra("title", title)
                          . putExtra("sizes", sizes)
                         .putExtra("quantity",quantitys)
+                        .putExtra("charge",charge)
+                        .putExtra("offer",offer)
+                        .putExtra("sht_d",sht_d)
+                        .putExtra("size",sizek)
+                        .putExtra("Discount",Discount)
 
 
 

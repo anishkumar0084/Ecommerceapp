@@ -30,6 +30,9 @@
         <activity android:name=".saved_address" />
         <activity android:name=".OrderSummary" />
         <activity
+            android:name=".payment"
+            android:exported="false" />
+        <activity
             android:name=".ProductDetail"
             android:exported="false" />
         <activity

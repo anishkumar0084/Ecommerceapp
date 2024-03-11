@@ -8,6 +8,10 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
@@ -66,8 +70,26 @@
                     android:textColor="#A095B4" />
 
             </LinearLayout>
-
         </LinearLayout>
-
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Remove">
+                </Button>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Save for later">
+                </Button>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="buy this now">
+                </Button>
+            </com.google.android.material.bottomappbar.BottomAppBar>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

@@ -125,6 +125,8 @@ public class ProductDetail extends AppCompatActivity {
                                 newProductRef.child("name").setValue(productName);
                                 newProductRef.child("price").setValue(productPrice);
                                 newProductRef.child("imageUrl").setValue(productImageUrl);
+                                Toast.makeText(getApplicationContext(), "Product Add Successful in Your cart", Toast.LENGTH_SHORT).show();
+
                                 // Add other product details as needed
                             }
                         }

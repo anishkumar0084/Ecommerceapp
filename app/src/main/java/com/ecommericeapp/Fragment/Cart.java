@@ -38,8 +38,6 @@ public class Cart extends Fragment {
     public Cart() {
         // Required empty public constructor
     }
-    private BroadcastReceiver receiver;
-    TextView textView;
 
 
 
@@ -67,10 +65,11 @@ public class Cart extends Fragment {
                 for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
                     String productName = productSnapshot.child("name").getValue(String.class);
                     String productPrice = productSnapshot.child("price").getValue(String.class);
+                    String imageUrl = productSnapshot.child("imageUrl").getValue(String.class);
                     // Get other product details if needed
                     if (productPrice != null) {
 
-                        productList.add(new cartdata(productName, productPrice));
+                        productList.add(new cartdata(productName, productPrice,imageUrl));
                     }
                 }
 

@@ -18,10 +18,22 @@ public class cartdata {
         this.title = title;
     }
 
-    String price,title;
+    String price;
+    String title;
 
-    public cartdata(String price, String title) {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    String image;
+
+    public cartdata(String price, String title, String image) {
         this.price = price;
         this.title = title;
+        this.image=image;
     }
 }

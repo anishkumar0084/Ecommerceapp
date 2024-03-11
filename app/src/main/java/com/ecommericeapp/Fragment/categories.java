@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.ecommericeapp.Adapter.CategoryAdapter;
 import com.ecommericeapp.Data.Categorydata;
-import com.ecommericeapp.ProductCategoryActivity.Jeans;
 import com.ecommericeapp.ProductCategoryActivity.Shirt;
 import com.ecommericeapp.R;
 import com.ecommericeapp.categorylisner;

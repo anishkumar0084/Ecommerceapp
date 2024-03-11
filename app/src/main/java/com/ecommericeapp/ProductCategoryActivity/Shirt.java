@@ -71,10 +71,19 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Accessing properties like 'id', 'image', and 'title'
                     String id = snapshot.child("id").getValue(String.class);
-                    String image = snapshot.child("image").getValue(String.class);
                     String title = snapshot.child("title").getValue(String.class);
                     String price = snapshot.child("price").getValue(String.class);
-                    productDetails.add(new productDetail(id,title,price,image));
+                    String shrtimage = snapshot.child("srt_image").getValue(String.class);
+                    String image1 = snapshot.child("image1").getValue(String.class);
+                    String image2 = snapshot.child("image2").getValue(String.class);
+                    String image3= snapshot.child("image3").getValue(String.class);
+                    String image4= snapshot.child("image4").getValue(String.class);
+                    String discount= snapshot.child("discount").getValue(String.class);
+                    String deliverycharge= snapshot.child("Delivery_charge").getValue(String.class);
+                    String shrtdesc= snapshot.child("srt_desc").getValue(String.class);
+                    String offer= snapshot.child("offer").getValue(String.class);
+                    String size= snapshot.child("size").getValue(String.class);
+                    productDetails.add(new productDetail(id,title,price,shrtimage,image1,image2,image3,image4,discount,deliverycharge,offer,shrtdesc,size));
 
                 }
                 home.notifyDataSetChanged();
@@ -91,7 +100,7 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
     @Override
     public void onItemclick(productDetail productDetail) {
         Intent intent=new Intent(this, ProductDetail.class);
-        intent.putExtra("ans",productDetail.getImage());
+        intent.putExtra("ans",productDetail.getSrt_image());
         intent.putExtra("title",productDetail.getTitle());
         intent.putExtra("price",productDetail.getPrice());
 

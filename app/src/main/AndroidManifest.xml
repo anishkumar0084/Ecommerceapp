@@ -19,9 +19,6 @@
             android:name=".Editprofile"
             android:exported="false" />
         <activity
-            android:name=".editProfile"
-            android:exported="false" />
-        <activity
             android:name=".Orderhistory"
             android:exported="false" />
         <activity

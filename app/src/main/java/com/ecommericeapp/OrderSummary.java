@@ -11,9 +11,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.ecommericeapp.Adapter.ProductAdapter;
 import com.ecommericeapp.Data.cartdata;
+import com.ecommericeapp.Data.orderDetail;
 import com.ecommericeapp.databinding.ActivityOrderSummaryBinding;
 import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,24 +40,32 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 public class OrderSummary extends AppCompatActivity implements PaymentResultListener {
 
     ImageView imageView;
     private ActivityOrderSummaryBinding binding;
+    private RelativeLayout parentLayout;
 
     String url,price,title,Discount,charge,offer,sizek,sht_d;
 
     String name,address_type,state,city,pin_code,house_no,road_name,phone;
-    String sizes,quantity,totals,total_amounts;
+    String sizes,quantity,totals,total_amounts,currentDate,orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        binding=ActivityOrderSummaryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        parentLayout = findViewById(R.id.parentLayout);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -70,14 +82,28 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
             binding.offer.setText(offer);
             binding.shrtDes.setText(sht_d);
 
+            if (sizek.equals("No")){
+                binding.quantity.setText("Qty:"+quantity);
+
+            }else {
+                binding.quantity.setText("sizes:"+sizes);
+
+
+            }
+
+
 
             binding.title.setText(title);
             binding.price.setText("₹ "+price);
-            binding.quantity.setText("sizes:"+sizes);
             binding.price2.setText("Price("+quantity+" item)");
-            binding.Discount.setText("₹ "+Discount);
 
             int int1=Integer.valueOf(quantity);
+            int into = Integer.parseInt(Discount);
+            int total_dis=int1*into;
+            Discount=String.valueOf(total_dis);
+            binding.Discount.setText("₹ "+Discount);
+            binding.save3.setText("You will save ₹"+Discount+" on this order");
+
             if (price != null) {
                 int int2 = Integer.parseInt(price);
                 int total=int1*int2;
@@ -221,6 +247,66 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
 
             }
         });
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+        // Get day of the week as a string (e.g., "Monday")
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+        String dayOfWeek = dayFormat.format(calendar.getTime());
+        // Get month as a string (e.g., "March")
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
+        String month = monthFormat.format(calendar.getTime());
+        // Get day of the month
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+//        // Get year
+//        int year = calendar.get(Calendar.YEAR);
+
+        // Create a string to display in the TextView
+        currentDate = "  Delivery by "+dayOfMonth + ", " + month + " " + dayOfWeek  ;
+        binding.deliverdate.setText(currentDate);
+
+
+
+
+
+    }
+    private void Order_detatil(){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+// Authenticate the user (Firebase Authentication)
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        String paymentmethod="Cash On Delivery";
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            DatabaseReference cartRef = databaseReference.child("users").child(userId).child("order");
+
+// Check if the product already exists in the cart
+            cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    orderDetail orderDetail=new orderDetail(currentDate,title,sizes,orderId,price,Discount,total_amounts,paymentmethod);
+
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+
+
+
+        }
+
+
     }
 
     @Override
@@ -238,4 +324,29 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
 
 
     }
+
+    public class UniqueOrderIdGenerator {
+        private Random RANDOM = new Random();
+
+        public  String generateOrderId() {
+            long timestamp = System.currentTimeMillis();
+            int random = RANDOM.nextInt(10000); // Adjust as needed for desired length
+
+            return String.format("%d-%04d", timestamp, random);
+        }
+
+        public void main(String[] args) {
+             orderId = generateOrderId();
+        }
+    }
+    private void inflateLayout() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View inflatedLayout = inflater.inflate(R.layout.paymentlayout, parentLayout, false);
+
+//        Button tvInflated = inflatedLayout.findViewById(R.btn);
+        // You can modify TextView or other views as needed here
+
+        parentLayout.addView(inflatedLayout);
+    }
+
 }

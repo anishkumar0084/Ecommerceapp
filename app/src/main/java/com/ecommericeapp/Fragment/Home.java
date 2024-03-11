@@ -71,6 +71,8 @@ public class Home extends Fragment implements Clicklistner {
 
         SearchView searchView = rootView.findViewById(R.id.search);
         searchView.setQueryHint("Search...");
+
+
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

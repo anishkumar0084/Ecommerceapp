@@ -11,7 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -24,57 +24,64 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="220dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="1dp">
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delivery date: 12/03/2022"
-                    android:textColor="#021684"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Product name"
-                    android:textColor="#021684"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="details"
-                    android:textColor="#A095B4" />
-
-
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="₹2200 "
-                    android:textColor="#021684"
-                    android:textStyle="bold" />
-
+                <!-- fragment_example.xml -->
 
                 <LinearLayout
-                    android:layout_width="190dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="1dp">
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:text="Delivery date: 12/03/2022"
+                        android:textColor="#021684"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="180dp"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:padding="1dp">
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:text="Longway - super DLX 750 W Mixer Grinder"
+                            android:textColor="#021684" />
+
+                        <ImageButton
+                            android:id="@+id/arrowButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:src="@drawable/baseline_arrow_forward_ios_24"
+                            android:background="@android:color/transparent"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="130dp"
                         android:layout_height="50dp"
                         android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:padding="5dp">
 
                         <ImageButton
                             android:id="@+id/imageButton1"

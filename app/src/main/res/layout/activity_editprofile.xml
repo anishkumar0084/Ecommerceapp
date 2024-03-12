@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,138 +11,143 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_marginBottom="10dp"
     android:padding="0dp">
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="220dp"
-    android:background="#87CEEB">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/imageViewarrow"
-                    android:layout_width="48dp"
-                    android:layout_height="33dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.016"
-                    app:srcCompat="@drawable/arrow"
-                    />
+            android:layout_height="220dp"
+            android:background="#87CEEB">
 
 
-                <ImageButton
-                    android:id="@+id/imageViewsearch"
-                    android:layout_width="48dp"
-                    android:layout_height="33dp"
-                    android:background="#ffff"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageViewstore"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.016"
-                    app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/imageViewstore"
-                    android:layout_width="48dp"
-                    android:layout_height="33dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.016"
-                    app:srcCompat="@drawable/baseline_shopping_cart_24" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="106dp"
-                    android:layout_height="89dp"
-                    android:layout_marginStart="44dp"
-                    android:foregroundGravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.146"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.687"
-                    />
-
-<!--                    tools:srcCompat="@tools:sample/avatars"-->
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="106dp"
-                    android:layout_height="89dp"
-                    android:layout_marginEnd="44dp"
-                    android:foregroundGravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.845"
-                    app:layout_constraintStart_toEndOf="@+id/imageView4"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.687"
-                     />
-<!--                tools:srcCompat="@tools:sample/avatars"-->
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="38dp"
-                    android:layout_height="37dp"
-                    android:text="OR"
-                    android:textColor="@android:color/black"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                    app:layout_constraintHorizontal_bias="0.692"
-                    app:layout_constraintStart_toEndOf="@+id/imageView4"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.633" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageButton
+                            android:id="@+id/back_btn"
+                            android:layout_width="48dp"
+                            android:layout_height="33dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.016"
+                            app:srcCompat="@drawable/arrow"
+                            />
 
 
-</FrameLayout>
+                        <ImageButton
+                            android:id="@+id/search_btn"
+                            android:layout_width="48dp"
+                            android:layout_height="33dp"
+                            android:background="#ffff"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/cart_button"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.016"
+                            app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
 
-<TextView
-    android:id="@+id/textViewFirstName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="First Name"
-    android:textSize="18sp"
-    android:textColor="@android:color/black"/>
+                        <ImageButton
+                            android:id="@+id/cart_button"
+                            android:layout_width="48dp"
+                            android:layout_height="33dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.016"
+                            app:srcCompat="@drawable/baseline_shopping_cart_24" />
 
-<EditText
-    android:id="@+id/editTextFirstName"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:inputType="text"
-    android:hint="Enter your first name"/>
+                        <ImageView
+                            android:id="@+id/men_avatar"
+                            android:layout_width="106dp"
+                            android:layout_height="106dp"
+                            android:layout_marginStart="44dp"
+                            android:foregroundGravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.146"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/men_avatar"
+                            app:layout_constraintVertical_bias="0.687"
+                            />
+
+                        <!--                    tools:srcCompat="@tools:sample/avatars"-->
+
+                        <ImageView
+                            android:id="@+id/women_avatar"
+                            android:layout_width="106dp"
+                            android:layout_height="106dp"
+                            android:layout_marginEnd="44dp"
+                            android:foregroundGravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.845"
+                            app:layout_constraintStart_toEndOf="@+id/men_avatar"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/women_avatar"
+                            app:layout_constraintVertical_bias="0.687"
+                            />
+                        <!--                tools:srcCompat="@tools:sample/avatars"-->
+
+                        <TextView
+                            android:id="@+id/or"
+                            android:layout_width="38dp"
+                            android:layout_height="37dp"
+                            android:text="OR"
+                            android:textColor="@android:color/black"
+                            android:gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/women_avatar"
+                            app:layout_constraintHorizontal_bias="0.692"
+                            app:layout_constraintStart_toEndOf="@+id/men_avatar"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.633" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
-            android:id="@+id/textViewLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+        </FrameLayout>
 
-        <EditText
-            android:id="@+id/editTextLastName"
+        <com.google.android.material.textfield.TextInputLayout
+            style="?attr/textInputFilledStyle"
+            android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Enter your last name"/>
+            app:boxStrokeColor="#1935D2"
+            android:hint="First Name">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="?attr/textInputFilledStyle"
+            android:id="@+id/last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
-            android:layout_width="378dp"
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:text="Submit"
@@ -150,88 +155,76 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
 
 
-                        <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="?attr/textInputFilledStyle"
+                    android:id="@+id/mobile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile Number">
+
+                        <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+                        <Button
+                            android:id="@+id/update_number"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="16dp">
+                            android:layout_marginStart="16dp"
+                            android:background="@android:color/transparent"
+                            android:text="Update"
+                            android:textColor="@android:color/holo_blue_light" />
+                        />
 
-                                <TextView
-                                    android:id="@+id/textViewMobileNumberLabel"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Mobile Number"
-                                    android:textSize="18sp"
-                                    android:textColor="@android:color/black"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="?attr/textInputFilledStyle"
+                    android:id="@+id/e_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-Mail">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="16dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content">
 
-                                        <EditText
-                                            android:id="@+id/editTextMobileNumber"
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:hint="Enter your mobile number"
-                                            android:inputType="phone" />
+                        </com.google.android.material.textfield.TextInputEditText>
+                        <Button
+                            android:id="@+id/update_emailid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:background="@android:color/transparent"
+                            android:text="Update"
+                            android:textColor="@android:color/holo_blue_light" />
+                            />
 
-                                        <Button
-                                            android:id="@+id/btnUpdateMobileNumber"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="16dp"
-                                            android:background="@android:color/transparent"
-                                            android:text="Update"
-                                            android:textColor="@android:color/holo_blue_light" />
-                                </LinearLayout>
-
-                                <!-- Your layout code for handling both mobile number and email -->
+                </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
 
 
-                                        <!-- Mobile Number Section -->
-                                        <TextView
-                                            android:id="@+id/textViewEmailIdLabel"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Email Id"
-                                            android:textSize="18sp"
-                                            android:textColor="@android:color/black"/>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal"
-                                            android:padding="16dp">
-
-                                                <EditText
-                                                    android:id="@+id/editTextEmailid"
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_weight="1"
-                                                    android:hint="Enter your Email Id"
-                                                    android:inputType="phone" />
-
-                                                <Button
-                                                    android:id="@+id/btnUpdateEmailid"
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginStart="16dp"
-                                                    android:background="@android:color/transparent"
-                                                    android:text="Update"
-                                                    android:textColor="@android:color/holo_blue_light" />
-                                        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
 
-                        </LinearLayout>
 
 
+                </LinearLayout>
         <Button
-            android:id="@+id/btnDeactivateAccount"
+            android:id="@+id/deactivate_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Deactivate Account"
@@ -239,5 +232,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:background="@android:color/transparent"
             android:layout_marginTop="16dp"/>
 
+
         </LinearLayout>
+
+
+
+
 

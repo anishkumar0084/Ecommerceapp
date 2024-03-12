@@ -14,7 +14,7 @@
         android:padding="4dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productimg"
+        android:id="@+id/product_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="horizontal">
@@ -32,7 +32,7 @@
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/productimg"
+        android:layout_below="@id/product_img"
         android:text="Product Name"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -119,7 +119,7 @@
         android:id="@+id/ratingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ratings & Reviews"
+        android:text="Ratings &amp; Reviews"
         android:textStyle="bold"
         android:layout_below="@id/llbutton"
         android:layout_marginTop="16dp"/>
@@ -142,7 +142,8 @@
                 style="?android:attr/ratingBarStyleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:rating="@{product.rating}" />
+                android:text="@{String.valueOf(product.reviewCount) + ' reviews'}"
+                />
 
             <TextView
                 android:id="@+id/productReviewCount"

@@ -58,7 +58,7 @@ public class categories extends Fragment implements categorylisner {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Categorydata> categorydata1=new ArrayList<>();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    String images1=dataSnapshot.child("images").getValue(String.class);
+                    String images1=dataSnapshot.child("image").getValue(String.class);
                     String name=dataSnapshot.child("name").getValue(String.class);
                     categorydata1.add(new Categorydata(images1,name));
 

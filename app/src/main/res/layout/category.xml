@@ -9,8 +9,8 @@
         android:id="@+id/cardView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp">
+        android:layout_margin="18dp"
+        app:cardCornerRadius="18dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,19 +22,21 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_home_24"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/baseline_home_24" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="20sp"
-
-                android:text="Your text"
                 android:layout_below="@+id/imageView"
-                />
+                android:layout_alignParentStart="true"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Your text"
+                android:textSize="20sp" />
 
         </RelativeLayout>
 

@@ -15,10 +15,10 @@ import com.ecommericeapp.R;
 
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHolder> {
     private List<cartdata> productList;
 
-    public ProductAdapter(List<cartdata> productList) {
+    public cartAdapter(List<cartdata> productList) {
         this.productList = productList;
     }
 

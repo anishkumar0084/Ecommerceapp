@@ -20,42 +20,35 @@
         android:queryHint="Search..."
         android:textColorHint="@color/black" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#C8B6B6"
-        app:cardCornerRadius="10dp"
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/image_slider1"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        app:iss_auto_cycle="true"
         android:layout_below="@+id/search"
-        >
+        android:scaleType="centerCrop"
+        app:iss_period="1000"
+        app:iss_delay="1000"
+        app:iss_text_align="CENTER"/>
 
 
 
-    <com.smarteist.autoimageslider.SliderView
-        android:id="@+id/slider"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/search"
-        app:sliderAnimationDuration="600"
-        app:sliderAutoCycleDirection="back_and_forth"
-        app:sliderIndicatorAnimationDuration="600"
-        app:sliderIndicatorEnabled="true"
-        app:sliderIndicatorGravity="center_horizontal|bottom"
-        app:sliderIndicatorMargin="15dp"
-        app:sliderIndicatorOrientation="horizontal"
-        app:sliderIndicatorPadding="3dp"
-        app:sliderIndicatorRadius="2dp"
-        app:sliderIndicatorSelectedColor="#5A5A5A"
-        app:sliderIndicatorUnselectedColor="#FFF"
-        app:sliderScrollTimeInSec="1" />
 
-    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/product"
         android:layout_width="match_parent"
-        android:layout_below="@+id/card"
+        android:layout_below="@+id/image_slider1"
         android:layout_height="match_parent"/>
 
 

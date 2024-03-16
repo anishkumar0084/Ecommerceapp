@@ -11,6 +11,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.ecommericeapp.Clicklistner;
+import com.ecommericeapp.Data.SliderData;
 import com.ecommericeapp.Data.productDetail;
 import com.ecommericeapp.ProductDetail;
 import com.ecommericeapp.R;

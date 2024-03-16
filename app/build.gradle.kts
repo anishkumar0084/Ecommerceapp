@@ -50,6 +50,8 @@ dependencies {
     implementation ("com.github.smarteist:autoimageslider:1.3.9")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.razorpay:checkout:1.6.33")
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
 
 
 

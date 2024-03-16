@@ -1,25 +1,20 @@
 package com.ecommericeapp.Fragment;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.ecommericeapp.Adapter.SliderAdapter;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.ecommericeapp.Clicklistner;
 import com.ecommericeapp.Data.SliderData;
 import com.ecommericeapp.Data.productDetail;
@@ -31,7 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +53,10 @@ public class Home extends Fragment implements Clicklistner {
     RecyclerView recyclerView;
     DatabaseReference myRef1;
     com.ecommericeapp.Adapter.Home home;
+    SliderData mSliderItems;
+    ImageSlider imageSlider;
+
+
 
 
 
@@ -71,6 +69,8 @@ public class Home extends Fragment implements Clicklistner {
 
         SearchView searchView = rootView.findViewById(R.id.search);
         searchView.setQueryHint("Search...");
+        imageSlider=rootView.findViewById(R.id.image_slider1);
+
 
 
         searchView.setOnClickListener(new View.OnClickListener() {
@@ -84,12 +84,8 @@ public class Home extends Fragment implements Clicklistner {
         });
 
 
-        ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+        ArrayList<String> sliderDataArrayList = new ArrayList<>();
 
-        // initializing the slider view.
-        SliderView sliderView = rootView.findViewById(R.id.slider);
-
-        SliderAdapter adapter = new SliderAdapter(getContext(), sliderDataArrayList);
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("images");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -97,9 +93,17 @@ public class Home extends Fragment implements Clicklistner {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 sliderDataArrayList.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    sliderDataArrayList.add(new SliderData(dataSnapshot.getValue().toString()) );
+                    String imageUrl = dataSnapshot.getValue(String.class);
+                    sliderDataArrayList.add(imageUrl);
+
                 }
-                adapter.notifyDataSetChanged();
+                List<SlideModel> imageList = new ArrayList<>();
+
+                for (String imageUrl : sliderDataArrayList) {
+                    imageList.add(new SlideModel(imageUrl, null));
+                }
+
+                imageSlider.setImageList(imageList);
 
             }
 
@@ -109,18 +113,6 @@ public class Home extends Fragment implements Clicklistner {
             }
         });
 
-        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
-        // below method is used to
-        // setadapter to sliderview.
-        sliderView.setSliderAdapter(adapter);
-        // below method is use to set
-        // scroll time in seconds.
-        sliderView.setScrollTimeInSec(3);
-        // to set it scrollable automatically
-        // we use below method.
-        sliderView.setAutoCycle(true);
-        // to start autocycle below method is used.
-        sliderView.startAutoCycle();
 
         recyclerView=rootView.findViewById(R.id.product);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
@@ -129,17 +121,9 @@ public class Home extends Fragment implements Clicklistner {
 
          myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
 
-//        String[] categoryNames = {"shirt", "jeans", "mobile"};
 
-//        // Fetch data from each category
-//        for (String categoryName : categoryNames) {
-//            DatabaseReference categoryRef = myRef1.child(categoryName);
-//            fetchDataFromNode(categoryName, categoryRef);
-//        }
-        // Define an ArrayList to store category names
         ArrayList<String> categoryNamesList = new ArrayList<>();
 
-// Fetch category names from Firebase
         myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -179,10 +163,10 @@ public class Home extends Fragment implements Clicklistner {
                     String title = snapshot.child("title").getValue(String.class);
                     String price = snapshot.child("price").getValue(String.class);
                     String shrtimage = snapshot.child("srt_image").getValue(String.class);
-                    String image1 = snapshot.child("price").getValue(String.class);
-                    String image2 = snapshot.child("price").getValue(String.class);
-                    String image3= snapshot.child("price").getValue(String.class);
-                    String image4= snapshot.child("price").getValue(String.class);
+                    String image1 = snapshot.child("image1").getValue(String.class);
+                    String image2 = snapshot.child("image2").getValue(String.class);
+                    String image3= snapshot.child("image3").getValue(String.class);
+                    String image4= snapshot.child("image4").getValue(String.class);
                     String discount= snapshot.child("discount").getValue(String.class);
                     String deliverycharge= snapshot.child("delivery_charge").getValue(String.class);
                     String shrtdesc= snapshot.child("srt_desc").getValue(String.class);
@@ -213,6 +197,11 @@ public class Home extends Fragment implements Clicklistner {
         .putExtra("offer",productDetail.getOffer())
         .putExtra("size",productDetail.getSize())
         .putExtra("sht_d",productDetail.getSrt_desc())
+        .putExtra("id",productDetail.getId())
+        .putExtra("image1",productDetail.getImage1())
+        .putExtra("image2",productDetail.getImage2())
+        .putExtra("image3",productDetail.getImage3())
+        .putExtra("image4",productDetail.getImage4())
 
 
         ;

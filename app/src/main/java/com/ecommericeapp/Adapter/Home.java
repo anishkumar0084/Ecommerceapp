@@ -14,12 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.ecommericeapp.Clicklistner;
+import com.ecommericeapp.Data.SliderData;
 import com.ecommericeapp.Data.productDetail;
 import com.ecommericeapp.R;
 import com.ecommericeapp.Searchproduct;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Home  extends RecyclerView.Adapter<Home.viewholder>{
 
@@ -28,6 +32,7 @@ public class Home  extends RecyclerView.Adapter<Home.viewholder>{
     productDetail data;
     ArrayList<productDetail> productDetail;
     private Clicklistner clicklistner;
+
     private AdapterView.OnItemClickListener listener;
     public Home(Context context , ArrayList<productDetail> productdetail,Clicklistner clicklistner) {
         this.context=context;
@@ -50,8 +55,10 @@ public class Home  extends RecyclerView.Adapter<Home.viewholder>{
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
          data = productDetail.get(position);
 
+
         holder.prductname.setText(data.getTitle());
         holder.price.setText(data.getPrice());
+
 
 
 

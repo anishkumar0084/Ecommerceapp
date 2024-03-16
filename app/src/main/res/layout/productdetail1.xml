@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
 
@@ -13,26 +15,26 @@
         android:text="BESTSELLER"
         android:padding="4dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_img"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="horizontal">
 
-    </androidx.recyclerview.widget.RecyclerView>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/productImage"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:layout_below="@id/productLabel"-->
-<!--        android:scaleType="centerCrop"   />-->
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/image_slider"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        app:iss_auto_cycle="true"
+        android:scaleType="centerCrop"
+        app:iss_period="1000"
+        app:iss_delay="1000"
+        app:iss_text_align="CENTER"/>
+
+
+
 
     <TextView
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/product_img"
+        android:layout_below="@id/image_slider"
         android:text="Product Name"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -61,7 +63,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/price4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ratingAndReviews"
@@ -73,7 +75,7 @@
         android:id="@+id/originalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/price"
+        android:layout_below="@id/price4"
         android:text="₹3,199"
         android:textSize="14sp"  />
 

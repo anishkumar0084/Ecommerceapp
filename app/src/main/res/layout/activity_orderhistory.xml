@@ -68,52 +68,22 @@
 
                     </LinearLayout>
 
-
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="160dp"
+                    android:layout_width="190dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="5dp">
 
-                    <LinearLayout
-                        android:layout_width="130dp"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
 
-                        <ImageButton
-                            android:id="@+id/imageButton1"
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@android:drawable/btn_star_big_off" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton2"
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@android:drawable/btn_star_big_off" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@android:drawable/btn_star_big_off" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton4"
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@android:drawable/btn_star_big_off" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton5"
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@android:drawable/btn_star_big_off" />
-
-                    </LinearLayout>
+                    <RatingBar
+                        android:id="@+id/product_ratingbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:scaleX="0.5"
+                        android:scaleY="0.5" />
 
                     <TextView
                         android:layout_width="wrap_content"

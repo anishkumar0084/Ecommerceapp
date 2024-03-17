@@ -10,6 +10,7 @@
         android:id="@+id/productdetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/llbutton"
         />
 
 
@@ -106,6 +107,36 @@
 <!--            android:text="Buy Now" />-->
 <!--       </LinearLayout>-->
 
-    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/llbutton"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp">
+
+        <Button
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:id="@+id/add_to_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add to cart"
+            android:layout_marginEnd="5dp" />
+
+        <Button
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:id="@+id/buy_now"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Buy Now"
+            android:layout_marginStart="5dp" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
 
 

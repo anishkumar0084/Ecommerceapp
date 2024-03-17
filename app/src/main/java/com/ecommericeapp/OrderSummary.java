@@ -5,11 +5,14 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -51,8 +54,12 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
        binding=ActivityOrderSummaryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        UniqueOrderIdGenerator orderIdGenerator = new UniqueOrderIdGenerator();
+        orderId = orderIdGenerator.generateOrderId();
 
-        parentLayout = findViewById(R.id.parentLayout);
+
+
+//        parentLayout = findViewById(R.id.parentLayout);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -69,11 +76,11 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
             binding.offer.setText(offer);
             binding.shrtDes.setText(sht_d);
 
-            if (sizek.equals("No")){
+            if (sizes.equals("No")){
                 binding.quantity.setText("Qty:"+quantity);
 
             }else {
-                binding.quantity.setText("sizes:"+sizes);
+                binding.quantity.setText("sizes:"+sizek);
 
 
             }
@@ -198,33 +205,7 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
         binding.continuef.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Checkout.preload(getApplicationContext());
-                Checkout checkout=new Checkout();
-
-                checkout.setKeyID("<YOUR_KEY_ID>");
-
-                try {
-                    JSONObject options = new JSONObject();
-
-                    options.put("name", "Merchant Name");
-                    options.put("description", "Reference No. #123456");
-                    options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
-                    options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
-                    options.put("theme.color", "#3399cc");
-                    options.put("currency", "INR");
-                    options.put("amount", "50000");//pass amount in currency subunits
-                    options.put("prefill.email", "anggsheskfmeskihsinghjamsar@gmail.com");
-                    options.put("prefill.contact","9988776655737");
-                    JSONObject retryObj = new JSONObject();
-                    retryObj.put("enabled", true);
-                    retryObj.put("max_count", 4);
-                    options.put("retry", retryObj);
-
-                    checkout.open(OrderSummary.this,options);
-
-                } catch(Exception e) {
-                    Log.e(TAG, "Error in starting Razorpay Checkout", e);
-                }
+                inflateLayout();
 
 
 
@@ -261,23 +242,40 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-// Authenticate the user (Firebase Authentication)
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         String paymentmethod="Cash On Delivery";
+        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.DAY_OF_MONTH, 7);
+        // Get day of the week as a string (e.g., "Monday")
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+        String dayOfWeek = dayFormat.format(calendar.getTime());
+        // Get month as a string (e.g., "March")
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
+        String month = monthFormat.format(calendar.getTime());
+        // Get day of the month
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+//        // Get year
+//        int year = calendar.get(Calendar.YEAR);
+
+        // Create a string to display in the TextView
+        String currentDate1 = "  Delivery by "+dayOfMonth + ", " + month + " " + dayOfWeek  ;
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            DatabaseReference cartRef = databaseReference.child("users").child(userId).child("order");
+            DatabaseReference cartRef = databaseReference.child("users").child(userId).child("order").child(orderId);
 
 // Check if the product already exists in the cart
             cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    orderDetail orderDetail=new orderDetail(currentDate,title,sizes,orderId,price,Discount,total_amounts,paymentmethod);
+                    orderDetail orderDetail=new orderDetail(currentDate1,title,sizes,orderId,price,Discount,total_amounts,paymentmethod);
+
+                    cartRef.setValue(orderDetail);
 
 
 
@@ -327,13 +325,62 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
         }
     }
     private void inflateLayout() {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View inflatedLayout = inflater.inflate(R.layout.paymentlayout, parentLayout, false);
+        Dialog dialog=new Dialog(this);
+        dialog.setContentView(R.layout.paymentlayout);
+        dialog.show();
+
+        Button button=dialog.findViewById(R.id.btnCashOnDelivery);
+        Button online=dialog.findViewById(R.id.btnOnlinePay);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Order_detatil();
+                button.setBackgroundColor(getResources().getColor(R.color.white));
+                online.setBackgroundColor(getResources().getColor(R.color.black));
+
+            }
+        });
+        online.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Checkout.preload(getApplicationContext());
+                Checkout checkout=new Checkout();
+
+                checkout.setKeyID("<YOUR_KEY_ID>");
+
+                try {
+                    JSONObject options = new JSONObject();
+
+                    options.put("name", "Merchant Name");
+                    options.put("description", "Reference No. #123456");
+                    options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
+                    options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
+                    options.put("theme.color", "#3399cc");
+                    options.put("currency", "INR");
+                    options.put("amount", "50000");//pass amount in currency subunits
+                    options.put("prefill.email", "anggsheskfmeskihsinghjamsar@gmail.com");
+                    options.put("prefill.contact","9988776655737");
+                    JSONObject retryObj = new JSONObject();
+                    retryObj.put("enabled", true);
+                    retryObj.put("max_count", 4);
+                    options.put("retry", retryObj);
+
+                    checkout.open(OrderSummary.this,options);
+
+                } catch(Exception e) {
+                    Log.e(TAG, "Error in starting Razorpay Checkout", e);
+                }
+
+
+            }
+        });
+
+
+
 
 //        Button tvInflated = inflatedLayout.findViewById(R.btn);
         // You can modify TextView or other views as needed here
 
-        parentLayout.addView(inflatedLayout);
     }
 
 }

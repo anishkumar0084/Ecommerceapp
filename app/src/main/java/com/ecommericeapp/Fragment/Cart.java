@@ -56,19 +56,24 @@ public class Cart extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<cartdata> productList = new ArrayList<>();
                 for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
-                    String productName = productSnapshot.child("name").getValue(String.class);
-                    String productPrice = productSnapshot.child("price").getValue(String.class);
-                    String imageUrl = productSnapshot.child("imageUrl").getValue(String.class);
+                    String productprice = productSnapshot.child("price").getValue(String.class);
+                    String producttitle = productSnapshot.child("title").getValue(String.class);
+                    String producttitleimage = productSnapshot.child("image").getValue(String.class);
+                    String imageUrlsizek = productSnapshot.child("sizek").getValue(String.class);
+                    String imageUrlquanti = productSnapshot.child("quantitys").getValue(String.class);
+                    String imageUrlcharge = productSnapshot.child("charge").getValue(String.class);
+                    String imageUrloffer = productSnapshot.child("offer").getValue(String.class);
+                    String imageUrlsht_d= productSnapshot.child("sht_d").getValue(String.class);
+                    String imageUrlsizes = productSnapshot.child("sizes").getValue(String.class);
+                    String imageUrldiscount = productSnapshot.child("discount").getValue(String.class);
                     // Get other product details if needed
-                    if (productPrice != null) {
 
-                        productList.add(new cartdata(productName, productPrice,imageUrl));
-                    }
+                        productList.add(new cartdata(productprice,producttitle,producttitleimage,imageUrlsizek,imageUrlquanti,imageUrlcharge,imageUrloffer,imageUrlsht_d,imageUrlsizes,imageUrldiscount));
                 }
 
                 RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                cartAdapter productAdapter = new cartAdapter(productList);
+                cartAdapter productAdapter = new cartAdapter(productList,getContext());
 
 
                 recyclerView.setAdapter(productAdapter);

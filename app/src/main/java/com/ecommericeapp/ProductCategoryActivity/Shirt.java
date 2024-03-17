@@ -54,13 +54,47 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
 
         myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
 
-        String[] categoryNames = {"shirt"};
+        ArrayList<String> categoryNamesList = new ArrayList<>();
+
+        Intent intent=getIntent();
+
+        String categoryNames=intent.getStringExtra("categoryName");
+
+//        ArrayList<String> categoryNamesList = new ArrayList<>();
+
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
+                    String categoryName = categorySnapshot.getKey();
+                    categoryNamesList.add(categoryName);
+                }
+
+                // Now you have all category names, proceed with fetching data for each category
+                for (String categoryName : categoryNamesList) {
+                    DatabaseReference categoryRef = myRef1.child(categoryName);
+                    fetchDataFromNode(categoryName, categoryRef);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle onCancelled event
+            }
+        });
+
+
+
+
+
+
+//        String[] categoryNames = {"shirt"};
 
         // Fetch data from each category
-        for (String categoryName : categoryNames) {
-            DatabaseReference categoryRef = myRef1.child(categoryName);
-            fetchDataFromNode(categoryName, categoryRef);
-        }
+//        for (String categoryName : categoryNames) {
+//            DatabaseReference categoryRef = myRef1.child(categoryName);
+//            fetchDataFromNode(categoryName, categoryRef);
+//        }
 
         recyclerView.setAdapter(home);
 

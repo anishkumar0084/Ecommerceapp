@@ -87,33 +87,29 @@
         android:text="70% off"
         android:textSize="14sp"  />
 
+
     <LinearLayout
-        android:id="@+id/llbutton"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/discount"
-        android:layout_marginTop="10dp">
 
-        <Button
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:id="@+id/add_to_cart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add to cart"
-            android:layout_marginEnd="5dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/discount"
+                 android:id="@+id/layot"
+                android:orientation="horizontal">
 
-        <Button
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:id="@+id/buy_now"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Buy Now"
-            android:layout_marginStart="5dp" />
-    </LinearLayout>
+                <Spinner
+                    android:id="@+id/product_quantity_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:id="@+id/product_size_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
 
 
 
@@ -123,7 +119,7 @@
         android:layout_height="wrap_content"
         android:text="Ratings &amp; Reviews"
         android:textStyle="bold"
-        android:layout_below="@id/llbutton"
+        android:layout_below="@id/layot"
         android:layout_marginTop="16dp"/>
 
     <LinearLayout

@@ -2,9 +2,12 @@ package com.ecommericeapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -34,11 +37,20 @@ import java.util.List;
 public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolderd> {
     Context context;
     List<detaiproduct> productDetails;
+    String sizes;
+    String quantitys;
+    private OnItemClickListener listener;
 
-    public detailAdapter(Context context,List<detaiproduct> productDetails) {
+
+    public detailAdapter(Context context,List<detaiproduct> productDetails,OnItemClickListener listener) {
         this.context=context;
         this.productDetails=productDetails;
+        this.listener = listener;
     }
+    public interface OnItemClickListener {
+        void onButtonClick(String size, String quantity);
+    }
+
 
     @NonNull
     @Override
@@ -62,6 +74,12 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
         imageList.add(new SlideModel(productDetail.getImage3(), null));
         imageList.add(new SlideModel(productDetail.getImage4(), null));
 
+//        if (productDetail.getSize().equals("No")){
+//            holder.size.setVisibility(View.INVISIBLE);
+//            holder.quantity.setGravity(Gravity.CENTER);
+//
+//        }
+
 
 
 //        imageList.add(new SlideModel(productDetail.getImage1()));
@@ -74,96 +92,76 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
         holder.imageSlider.setImageList(imageList);
         holder.imageSlider.stopSliding();
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                R.array.Number, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        holder.quantity.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(context,
+                R.array.Size, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+       holder. size.setAdapter(adapter1);
+        holder.quantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedValue = parentView.getItemAtPosition(position).toString();
+
+                if (selectedValue.equals("1")) {
+                    quantitys="1";
+
+                } else if (selectedValue.equals("2")) {
+                    quantitys="2";
+
+                } else if (selectedValue.equals("3")) {
+                    quantitys="3";
+
+                }else  {
+
+
+                }
+                listener.onButtonClick(sizes,quantitys);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing if nothing is selected
+            }
+        });
+       holder. size.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedValue = parentView.getItemAtPosition(position).toString();
+                // Perform tasks based on the selected value
+                if (selectedValue.equals("M")) {
+                    sizes="M";
+
+                } else if (selectedValue.equals("X")) {
+                    sizes="X";
+
+                } else if (selectedValue.equals("L")) {
+                    sizes="L";
+                }else {
+                    sizes="XL";
+
+
+                }
+                listener.onButtonClick(sizes,quantitys);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing if nothing is selected
+            }
+        });
+
+
 
 
 //        Glide.with(context)
 //                .load(productDetail.getSrt_image())
 //                .into(holder.imageView);
-
-        holder.Buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1=new Intent(context, OrderSummary.class);
-                intent1.putExtra("ans", productDetail.getSrt_image())
-                        .putExtra("price", productDetail.getPrice())
-                        .putExtra("title", productDetail.getTitle())
-                        . putExtra("sizes", productDetail.getSize())
-//                        .putExtra("quantity",)
-                        .putExtra("charge",productDetail.getDelivery_charge())
-                        .putExtra("offer",productDetail.getOffer())
-                        .putExtra("sht_d",productDetail.getSrt_desc())
-//                        .putExtra("size",)
-                        .putExtra("Discount",productDetail.getDiscount())
-
-
-
-
-
-                ;
-
-
-                context.startActivity(intent1);
-
-
-
-            }
-        });
-       holder.Cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = firebaseDatabase.getReference();
-
-// Authenticate the user (Firebase Authentication)
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-
-                if (currentUser != null) {
-                    String userId = currentUser.getUid();
-
-                    DatabaseReference cartRef = databaseReference.child("users").child(userId).child("cart");
-
-// Check if the product already exists in the cart
-                    cartRef.orderByChild("name").equalTo(productDetail.getTitle()).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                // Product already exists in the cart, handle accordingly (e.g., show a message)
-                                Toast.makeText(context, "Product already exists in the cart", Toast.LENGTH_SHORT).show();
-                            } else {
-                                // Define product details as strings
-                                String productName = productDetail.getTitle();
-                                String productPrice =productDetail.getPrice();
-                                String productImageUrl =productDetail.getSrt_image();
-
-                                // Product doesn't exist in the cart, add it
-                                DatabaseReference newProductRef = cartRef.push();
-                                newProductRef.child("name").setValue(productName);
-                                newProductRef.child("price").setValue(productPrice);
-                                newProductRef.child("imageUrl").setValue(productImageUrl);
-                                Toast.makeText(context, "Product Add Successful in Your cart", Toast.LENGTH_SHORT).show();
-
-                                // Add other product details as needed
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            // Handle errors
-                        }
-                    });
-
-
-
-                }
-
-
-
-
-
-
-            }
-        });
 
 
 
@@ -194,13 +192,15 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
             title1=itemView.findViewById(R.id.productName);
              price2=itemView.findViewById(R.id.price4);
             imageView=itemView.findViewById(R.id.product_image);
-            Cart=itemView.findViewById(R.id.add_to_cart);
-            Buy=itemView.findViewById(R.id.buy_now);
+
             imageSlider=itemView.findViewById(R.id.image_slider);
+            quantity=itemView.findViewById(R.id.product_quantity_spinner);
+            size=itemView.findViewById(R.id.product_size_spinner);
 
-//            quantity=itemView.findViewById(R.id.product_quantity_spinner);
-//            size=itemView.findViewById(R.id.product_size_spinner);
 
+
+
+//
 
 
         }

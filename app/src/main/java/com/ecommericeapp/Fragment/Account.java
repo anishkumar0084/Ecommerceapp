@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.ecommericeapp.Editprofile;
 import com.ecommericeapp.OrderSummary;
+import com.ecommericeapp.Orderhistory;
 import com.ecommericeapp.R;
 import com.ecommericeapp.databinding.FragmentAccountBinding;
 import com.ecommericeapp.saved_address;
@@ -56,7 +57,7 @@ public class Account extends Fragment {
         binding.orderid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), OrderSummary.class);
+                Intent intent=new Intent(getContext(), Orderhistory.class);
                 startActivity(intent);
 
             }

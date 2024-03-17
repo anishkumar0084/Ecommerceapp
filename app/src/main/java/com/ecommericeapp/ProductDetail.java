@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.ecommericeapp.Adapter.detailAdapter;
+import com.ecommericeapp.Data.cartdata;
 import com.ecommericeapp.Data.detaiproduct;
 import com.ecommericeapp.Data.productDetail;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDetail extends AppCompatActivity {
+public class ProductDetail extends AppCompatActivity implements com.ecommericeapp.Adapter.detailAdapter.OnItemClickListener {
     ImageView imageView;
     Spinner quantity,size;
 
@@ -54,6 +55,8 @@ public class ProductDetail extends AppCompatActivity {
 
         RecyclerView recyclerView=findViewById(R.id.productdetail);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Cart=findViewById(R.id.add_to_cart);
+        Buy=findViewById(R.id.buy_now);
 
 
 
@@ -77,7 +80,7 @@ public class ProductDetail extends AppCompatActivity {
             image4= intent.getStringExtra("image4");
 
             detaiproduct.add(new detaiproduct(id,title,price,url,image1,image2,image3,image4,Discount,charge,offer,sht_d,sizek));
-            detailAdapter=new detailAdapter(this,detaiproduct);
+            detailAdapter=new detailAdapter(this,detaiproduct,this);
 
 
             recyclerView.setAdapter(detailAdapter);
@@ -94,6 +97,82 @@ public class ProductDetail extends AppCompatActivity {
 
             // Do something with productId
         }
+        Buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1=new Intent(ProductDetail.this, OrderSummary.class);
+                intent1.putExtra("ans", url)
+                        .putExtra("price",price)
+                        .putExtra("title", title)
+                        . putExtra("sizes", sizek)
+                        .putExtra("quantity",quantitys)
+                        .putExtra("charge",charge)
+                        .putExtra("offer",offer)
+                        .putExtra("sht_d",sht_d)
+                        .putExtra("size",sizes)
+                        .putExtra("Discount",Discount)
+
+
+
+
+
+                ;
+
+
+                startActivity(intent1);
+
+
+
+            }
+        });
+        Cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+// Authenticate the user (Firebase Authentication)
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                if (currentUser != null) {
+                    String userId = currentUser.getUid();
+
+                    DatabaseReference cartRef = databaseReference.child("users").child(userId).child("cart").child(id);
+
+// Check if the product already exists in the cart
+                    cartRef.orderByChild("name").equalTo(title).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                // Product already exists in the cart, handle accordingly (e.g., show a message)
+                                Toast.makeText(ProductDetail.this, "Product already exists in the cart", Toast.LENGTH_SHORT).show();
+                            } else {
+
+                                cartdata cartdata=new cartdata(price,title,url,sizek,quantitys,charge,offer,sht_d,sizes,Discount);
+                                cartRef.setValue(cartdata);
+                                Toast.makeText(ProductDetail.this, "Product Add Successful in Your cart", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Handle errors
+                        }
+                    });
+
+
+
+                }
+
+
+
+
+
+
+            }
+        });
 
 
 
@@ -109,69 +188,19 @@ public class ProductDetail extends AppCompatActivity {
 
 
 
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.Number, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        quantity.setAdapter(adapter);
-//
-//        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-//                R.array.Size, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        size.setAdapter(adapter1);
-//        quantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-//                String selectedValue = parentView.getItemAtPosition(position).toString();
-//
-//                if (selectedValue.equals("1")) {
-//                    quantitys="1";
-//
-//                } else if (selectedValue.equals("2")) {
-//                    quantitys="2";
-//
-//                } else if (selectedValue.equals("3")) {
-//                    quantitys="3";
-//
-//                }else  {
-//
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parentView) {
-//                // Do nothing if nothing is selected
-//            }
-//        });
-//        size.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-//                String selectedValue = parentView.getItemAtPosition(position).toString();
-//                // Perform tasks based on the selected value
-//                if (selectedValue.equals("M")) {
-//                    sizes="M";
-//
-//                } else if (selectedValue.equals("X")) {
-//                    sizes="X";
-//
-//                } else if (selectedValue.equals("L")) {
-//                    sizes="L";
-//                }else {
-//                    sizes="XL";
-//
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parentView) {
-//                // Do nothing if nothing is selected
-//            }
-//        });
+
+
 
     }
 
 
+    @Override
+    public void onButtonClick(String size, String quantity) {
+
+        sizes=size;
+        quantitys=quantity;
+
+
+
+    }
 }

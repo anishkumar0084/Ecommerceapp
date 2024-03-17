@@ -5,16 +5,13 @@
         <item
             android:id="@+id/home12"
             android:title="Home"
-            android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
 
 
             android:icon="@drawable/baseline_home_24"/>
         <item
             android:id="@+id/categori"
             android:title="Categories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            
 
             android:icon="@drawable/baseline_category_24"/>
         <item

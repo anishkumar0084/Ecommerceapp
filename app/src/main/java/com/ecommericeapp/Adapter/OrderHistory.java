@@ -10,20 +10,26 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.ecommericeapp.Clicklistner;
 import com.ecommericeapp.Data.orderDetail;
 import com.ecommericeapp.R;
+import com.ecommericeapp.orderdetail;
 
 import java.util.List;
 
 public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> {
     Context context;
     List<orderDetail> orderDetailList;
+    orderdetail orderdetailk;
 
-    public OrderHistory(Context context,List<orderDetail> orderDetailList) {
+    public OrderHistory(Context context,List<orderDetail> orderDetailList,orderdetail orderdetail) {
         this.context=context;
         this.orderDetailList=orderDetailList;
+        this.orderdetailk=orderdetail;
     }
 
     @NonNull
@@ -39,8 +45,18 @@ public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> 
         orderDetail orderDetail=orderDetailList.get(position);
 
         holder.title.setText(orderDetail.getTitle());
-        holder.date.setText(orderDetail.getDate());
+        holder.date.setText(orderDetail.getCurrentdate());
+        Glide.with(holder.itemView)
+                .load(orderDetail.getImage())
+                .fitCenter()
+                .into(holder.imageview);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderdetailk.onItemclick(orderDetail);
 
+            }
+        });
 
     }
 
@@ -54,12 +70,14 @@ public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> 
         TextView date;
         TextView title;
         RatingBar ratingBar;
+        CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageview=itemView.findViewById(R.id.productimage2);
             date=itemView.findViewById(R.id.date);
             title=itemView.findViewById(R.id.title);
             ratingBar=itemView.findViewById(R.id.product_ratingbar1);
+            cardView=itemView.findViewById(R.id.cardsk);
         }
     }
 }

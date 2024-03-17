@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
         bottomNavigationView= findViewById(R.id.bottom_navigation);
         frameLayout=findViewById(R.id.fragment_container);
          bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -61,6 +65,23 @@ public class MainActivity extends AppCompatActivity {
                  return true;
              }
          });
+        Intent intent = getIntent();
+        String fragmentToLoad = intent.getStringExtra("fragmentToLoad");
+        if (fragmentToLoad != null) {
+            switch (fragmentToLoad) {
+                case "Account":
+                    loadAccountFragment();
+                    break;
+                // Add more cases for other fragments if needed
+                default:
+                    // Load the default fragment
+                    frameget(new Home());
+                    break;
+            }
+        } else {
+            // Load the default fragment
+            frameget(new Home());
+        }
 
          frameget(new Home());
 
@@ -77,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public void loadAccountFragment() {
+        Account accountFragment = new Account();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, accountFragment);
+        transaction.addToBackStack(null); // Optional: Add fragment to back stack
+        transaction.commit();
+    }
 }
 
 

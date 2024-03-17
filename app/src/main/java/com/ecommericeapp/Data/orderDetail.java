@@ -1,17 +1,92 @@
 package com.ecommericeapp.Data;
 
 public class orderDetail {
-    String date,title,size,order_id,price,discount,total_amount,payment_method;
+    String date;
+    String title;
+    String size;
+    String order_id;
+    String price;
+    String discount;
+    String total_amount;
+    String payment_method;
+    String currentdate;
 
-    public orderDetail(String date, String title, String size, String order_id, String price, String discount, String total_amount, String payment_method) {
+    public String getCurrentdate() {
+        return currentdate;
+    }
+
+    public void setCurrentdate(String currentdate) {
+        this.currentdate = currentdate;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    String image;
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCharge() {
+        return charge;
+    }
+
+    public void setCharge(String charge) {
+        this.charge = charge;
+    }
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
+
+    public String getSht_d() {
+        return sht_d;
+    }
+
+    public void setSht_d(String sht_d) {
+        this.sht_d = sht_d;
+    }
+
+    public String getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(String sizes) {
+        this.sizes = sizes;
+    }
+
+    String quantity,charge,offer,sht_d,sizes;
+
+    public orderDetail(String date, String title, String size, String order_id, String price, String discount, String total_amount, String payment_method,String image,String cureentdate,String quantity,String charge,String offer,String sht_d,String sizes) {
         this.date = date;
         this.title = title;
         this.size = size;
+        this.quantity=quantity;
+        this.charge=charge;
+        this.offer=offer;
+        this.sht_d=sht_d;
+        this.sizes=sizes;
         this.order_id = order_id;
         this.price = price;
         this.discount = discount;
         this.total_amount = total_amount;
         this.payment_method = payment_method;
+        this.image=image;
+        this.currentdate=cureentdate;
     }
 
     public String getDate() {

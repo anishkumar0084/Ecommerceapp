@@ -113,7 +113,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="?attr/textInputFilledStyle"
-            android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxStrokeColor="#1935D2"
@@ -123,6 +122,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/first_name"
+
                     android:layout_marginTop="5dp"
                     />
 
@@ -131,7 +132,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="?attr/textInputFilledStyle"
-            android:id="@+id/last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Last Name">
@@ -139,6 +139,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/last_name"
+
                     android:layout_marginTop="5dp"
                     />
 
@@ -164,13 +166,14 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="?attr/textInputFilledStyle"
-                    android:id="@+id/mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/mobile_number"
+
                             android:layout_height="wrap_content">
 
                         </com.google.android.material.textfield.TextInputEditText>
@@ -189,7 +192,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="?attr/textInputFilledStyle"
-                    android:id="@+id/e_mail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="E-Mail">
@@ -197,6 +199,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_marginTop="5dp"
+                            android:id="@+id/e_mail"
                             android:layout_height="wrap_content">
 
                         </com.google.android.material.textfield.TextInputEditText>

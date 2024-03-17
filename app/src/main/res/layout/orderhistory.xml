@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:id="@+id/cardsk"
         android:background="@color/white"
         android:layout_height="wrap_content">
         <LinearLayout

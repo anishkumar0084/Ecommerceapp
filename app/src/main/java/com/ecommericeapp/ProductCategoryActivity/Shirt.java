@@ -65,15 +65,21 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
         myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean categoryExists = false;
                 for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
                     String categoryName = categorySnapshot.getKey();
-                    categoryNamesList.add(categoryName);
+                    if (categoryNames.equals(categoryName)) {
+                        categoryExists = true;
+                        break;
+                    }
                 }
 
-                // Now you have all category names, proceed with fetching data for each category
-                for (String categoryName : categoryNamesList) {
-                    DatabaseReference categoryRef = myRef1.child(categoryName);
-                    fetchDataFromNode(categoryName, categoryRef);
+                if (categoryExists) {
+                    DatabaseReference categoryRef = myRef1.child(categoryNames);
+                    fetchDataFromNode(categoryNames, categoryRef);
+                } else {
+                    // Handle the case where the category name doesn't exist
+                    Toast.makeText(getApplicationContext(), "Category doesn't exist", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -82,6 +88,7 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
                 // Handle onCancelled event
             }
         });
+
 
 
 
@@ -135,11 +142,26 @@ public class Shirt extends AppCompatActivity implements Clicklistner {
     @Override
     public void onItemclick(productDetail productDetail) {
         Intent intent=new Intent(this, ProductDetail.class);
-        intent.putExtra("ans",productDetail.getSrt_image());
-        intent.putExtra("title",productDetail.getTitle());
-        intent.putExtra("price",productDetail.getPrice());
+        intent.putExtra("ans",productDetail.getSrt_image())
+                .putExtra("title",productDetail.getTitle())
+                .putExtra("price",productDetail.getPrice())
+                .putExtra("Discount",productDetail.getDiscount())
+                .putExtra("charge",productDetail.getDelivery_charge())
+                .putExtra("offer",productDetail.getOffer())
+                .putExtra("size",productDetail.getSize())
+                .putExtra("sht_d",productDetail.getSrt_desc())
+                .putExtra("id",productDetail.getId())
+                .putExtra("image1",productDetail.getImage1())
+                .putExtra("image2",productDetail.getImage2())
+                .putExtra("image3",productDetail.getImage3())
+                .putExtra("image4",productDetail.getImage4())
+
+
+        ;
+
 
         startActivity(intent);
+
 
 
 

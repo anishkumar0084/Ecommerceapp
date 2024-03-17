@@ -37,7 +37,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
-public class OrderSummary extends AppCompatActivity implements PaymentResultListener {
+public class OrderSummary extends AppCompatActivity implements PaymentResultListener  {
 
     ImageView imageView;
     private ActivityOrderSummaryBinding binding;
@@ -56,10 +56,11 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
 
         UniqueOrderIdGenerator orderIdGenerator = new UniqueOrderIdGenerator();
         orderId = orderIdGenerator.generateOrderId();
+        String ans="5";
 
 
 
-//        parentLayout = findViewById(R.id.parentLayout);
+
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -75,6 +76,8 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
             sht_d= intent.getStringExtra("sht_d");
             binding.offer.setText(offer);
             binding.shrtDes.setText(sht_d);
+
+
 
             if (sizes.equals("No")){
                 binding.quantity.setText("Qty:"+quantity);
@@ -226,12 +229,35 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
         String month = monthFormat.format(calendar.getTime());
         // Get day of the month
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        binding.underOrderSummary.setVisibility(View.INVISIBLE);
 //        // Get year
 //        int year = calendar.get(Calendar.YEAR);
 
         // Create a string to display in the TextView
         currentDate = "  Delivery by "+dayOfMonth + ", " + month + " " + dayOfWeek  ;
-        binding.deliverdate.setText(currentDate);
+        if (ans.equals(intent.getStringExtra("order"))){
+
+            binding.continuef.setVisibility(View.INVISIBLE);
+            binding.order.setText("Order Summary ");
+            binding.deliverdate.setText(intent.getStringExtra("date"));
+            binding.save3.setVisibility(View.INVISIBLE);
+            binding.adresschange.setVisibility(View.INVISIBLE);
+            binding.underOrderSummary.setVisibility(View.VISIBLE);
+
+
+            binding.gh.setText("Payment Method-"+intent.getStringExtra("payment"));
+            binding.gh.setTextSize(30);
+            binding.underOrderSummary.setText("order id="+intent.getStringExtra("orderid"));
+
+
+
+
+
+        }else {
+
+            binding.deliverdate.setText(currentDate);
+
+        }
 
 
 
@@ -261,7 +287,7 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
 //        int year = calendar.get(Calendar.YEAR);
 
         // Create a string to display in the TextView
-        String currentDate1 = "  Delivery by "+dayOfMonth + ", " + month + " " + dayOfWeek  ;
+        String currentDate1 = "Order date -"+dayOfMonth + ", " + month + " " + dayOfWeek  ;
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -273,7 +299,7 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    orderDetail orderDetail=new orderDetail(currentDate1,title,sizes,orderId,price,Discount,total_amounts,paymentmethod);
+                    orderDetail orderDetail=new orderDetail(currentDate1,title,sizes,orderId,price,Discount,total_amounts,paymentmethod,url,currentDate,quantity,charge,offer,sht_d,sizek);
 
                     cartRef.setValue(orderDetail);
 

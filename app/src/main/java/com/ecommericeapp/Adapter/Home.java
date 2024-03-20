@@ -32,13 +32,30 @@ public class Home  extends RecyclerView.Adapter<Home.viewholder>{
     productDetail data;
     ArrayList<productDetail> productDetail;
     private Clicklistner clicklistner;
+    private ArrayList<productDetail> filteredProductList;
 
-    private AdapterView.OnItemClickListener listener;
     public Home(Context context , ArrayList<productDetail> productdetail,Clicklistner clicklistner) {
         this.context=context;
         this.productDetail=productdetail;
+        this.filteredProductList = new ArrayList<>(productdetail);
         this.clicklistner=clicklistner;
 
+    }
+    public void filter(String query) {
+        filteredProductList.clear();
+        if (query.isEmpty()) {
+            filteredProductList.addAll(productDetail); // Show original list if query is empty
+        } else {
+            query = query.toLowerCase();
+            for (productDetail product : productDetail) {
+                // Add products that match the query (e.g., by name or description)
+                if (product.getTitle().toLowerCase().contains(query) ||
+                        product.getSrt_desc().toLowerCase().contains(query)) {
+                    filteredProductList.add(product);
+                }
+            }
+        }
+        notifyDataSetChanged(); // Refresh RecyclerView
     }
 
 

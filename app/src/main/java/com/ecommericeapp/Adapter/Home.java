@@ -57,7 +57,7 @@ public class Home  extends RecyclerView.Adapter<Home.viewholder>{
 
 
         holder.prductname.setText(data.getTitle());
-        holder.price.setText(data.getPrice());
+        holder.price.setText("₹ "+data.getPrice());
 
 
 

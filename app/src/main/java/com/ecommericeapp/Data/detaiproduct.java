@@ -13,6 +13,50 @@ public class detaiproduct {
     String Delivery_charge;
     String offer;
     String srt_desc;
+    String rating,comment;
+
+
+    String size;
+    String totalratingk,average;
+
+
+    public detaiproduct(String id, String title, String price, String srt_image, String image1, String image2, String image3, String image4, String discount, String delivery_charge, String offer, String srt_desc,String size,String rating,String comment,String totalratignk,String aveage) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.srt_image = srt_image;
+        this.image1 = image1;
+        this.rating=rating;
+        this.comment=comment;
+        this.size=size;
+        this.image2 = image2;
+        this.image3 = image3;
+        this.image4 = image4;
+        this.discount = discount;
+       this.Delivery_charge = delivery_charge;
+        this.offer = offer;
+        this.srt_desc = srt_desc;
+        this.totalratingk=totalratignk;
+        this.average=aveage;
+    }
+
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
 
     public String getSize() {
         return size;
@@ -22,23 +66,24 @@ public class detaiproduct {
         this.size = size;
     }
 
-    String size;
 
-    public detaiproduct(String id, String title, String price, String srt_image, String image1, String image2, String image3, String image4, String discount, String delivery_charge, String offer, String srt_desc,String size) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-        this.srt_image = srt_image;
-        this.image1 = image1;
-        this.size=size;
-        this.image2 = image2;
-        this.image3 = image3;
-        this.image4 = image4;
-        this.discount = discount;
-        Delivery_charge = delivery_charge;
-        this.offer = offer;
-        this.srt_desc = srt_desc;
+
+    public String getTotalratingk() {
+        return totalratingk;
     }
+
+    public void setTotalratingk(String totalratingk) {
+        this.totalratingk = totalratingk;
+    }
+
+    public String getAverage() {
+        return average;
+    }
+
+    public void setAverage(String average) {
+        this.average = average;
+    }
+
 
     public String getId() {
         return id;

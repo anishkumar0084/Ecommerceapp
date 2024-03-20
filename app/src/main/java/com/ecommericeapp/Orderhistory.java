@@ -66,12 +66,13 @@ public class Orderhistory extends AppCompatActivity implements orderdetail{
                     String productPricepaymentcurrentoff= productSnapshot.child("offer").getValue(String.class);
                     String productPricepaymentcurrentsht= productSnapshot.child("sht_d").getValue(String.class);
                     String productPricepaymentcurrentsizes= productSnapshot.child("sizes").getValue(String.class);
+                    String productPricepaymentcurrentid= productSnapshot.child("id").getValue(String.class);
 //                    String imageUrl = productSnapshot.child("imageUrl").getValue(String.class);
                     // Get other product details if needed
                     if (productPrice != null) {
                         orderDetailList.add(new orderDetail(productName,productPrice,size,productPriceorder,productPriceprice,productPricediscount,productPricetotal,
                                 productPricepayment,productPricepaymentimage,
-                                productPricepaymentcurrent,productPricepaymentcurrentq,productPricepaymentcurrentch,productPricepaymentcurrentoff,productPricepaymentcurrentsht,productPricepaymentcurrentsizes) );
+                                productPricepaymentcurrent,productPricepaymentcurrentq,productPricepaymentcurrentch,productPricepaymentcurrentoff,productPricepaymentcurrentsht,productPricepaymentcurrentsizes,productPricepaymentcurrentid) );
 
 
                     }

@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.EcommericeApp" parent="Base.Theme.EcommericeApp" />
+
+    <style name="CustomRatingBar" parent="@style/Widget.AppCompat.RatingBar">
+        <!-- Change the color of the RatingBar -->
+        <item name="colorControlNormal">#0DDC16</item> <!-- Yellow color -->
+        <!-- You can also customize other attributes as needed -->
+    </style>
 </resources>

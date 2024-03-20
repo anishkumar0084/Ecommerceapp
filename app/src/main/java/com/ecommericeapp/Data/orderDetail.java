@@ -11,6 +11,8 @@ public class orderDetail {
     String payment_method;
     String currentdate;
 
+
+
     public String getCurrentdate() {
         return currentdate;
     }
@@ -70,14 +72,24 @@ public class orderDetail {
     }
 
     String quantity,charge,offer,sht_d,sizes;
+    String id;
 
-    public orderDetail(String date, String title, String size, String order_id, String price, String discount, String total_amount, String payment_method,String image,String cureentdate,String quantity,String charge,String offer,String sht_d,String sizes) {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public orderDetail(String date, String title, String size, String order_id, String price, String discount, String total_amount, String payment_method, String image, String cureentdate, String quantity, String charge, String offer, String sht_d, String sizes, String id) {
         this.date = date;
         this.title = title;
         this.size = size;
         this.quantity=quantity;
         this.charge=charge;
         this.offer=offer;
+        this.id=id;
         this.sht_d=sht_d;
         this.sizes=sizes;
         this.order_id = order_id;
@@ -87,6 +99,7 @@ public class orderDetail {
         this.payment_method = payment_method;
         this.image=image;
         this.currentdate=cureentdate;
+
     }
 
     public String getDate() {

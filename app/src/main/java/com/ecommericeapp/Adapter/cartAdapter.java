@@ -46,8 +46,8 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHol
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         cartdata product = productList.get(position);
         holder.textViewProductName.setText(product.getTitle());
-        holder.textViewProductPrice.setText(String.valueOf(product.getPrice()));
-        holder.quantity.setText(product.getQuantitys());
+        holder.textViewProductPrice.setText("₹ "+String.valueOf(product.getPrice()));
+        holder.quantity.setText("Qty ;"+product.getQuantitys());
         holder.shortd.setText(product.getSht_d());
         holder.offer.setText(product.getOffer());
         Glide.with(holder.itemView).load(product.getImage()).fitCenter().into(holder.imageView);

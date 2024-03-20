@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.animations.Toss;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.ecommericeapp.Data.detaiproduct;
@@ -63,34 +66,63 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull detailAdapter.ViewHolderd holder, int position) {
         detaiproduct productDetail=productDetails.get(position);
-
         holder.title1.setText(productDetail.getTitle());
-        holder.price2.setText(productDetail.getPrice());
-        List<SlideModel> imageList = new ArrayList<>();
+        holder.price2.setText("₹ "+productDetail.getPrice());
+        holder.discount.setText("Discount ₹ "+productDetail.getDiscount());
+        holder.offers.setText("offers- "+productDetail.getOffer());
+        holder.desc.setText(productDetail.getSrt_desc());
 
+        if (productDetail.getComment() != null) {
+            holder.titlecome.setText(productDetail.getComment());
+//            Toast.makeText(context, "ans"+productDetail.getComment() , Toast.LENGTH_SHORT).show();
 
-        imageList.add(new SlideModel(productDetail.getImage1(), null));
-        imageList.add(new SlideModel(productDetail.getImage2(), null));
-        imageList.add(new SlideModel(productDetail.getImage3(), null));
-        imageList.add(new SlideModel(productDetail.getImage4(), null));
+        } else {
+            holder.titlecome.setText("");
+        }
 
-//        if (productDetail.getSize().equals("No")){
-//            holder.size.setVisibility(View.INVISIBLE);
-//            holder.quantity.setGravity(Gravity.CENTER);
+        if (productDetail.getRating() != null && productDetail.getAverage() != null && productDetail.getTotalratingk() != null) {
+            float fs = Float.parseFloat(productDetail.getRating());
+            float fsk = Float.parseFloat(productDetail.getAverage());
+            int fskg = Integer.parseInt(productDetail.getTotalratingk());
+            holder.ratingsk.setRating(fsk);
+            holder.total.setText("(" + fskg + ")" + " reviews");
 //
-//        }
+            String ratingString = String.format("%.1f", fs); // Convert float to string with one decimal place
+            holder.ratingtext.setText("Rating: " + ratingString);
 
+            holder.rating.setRating(fs);
+        } else {
+            holder.ratingsk.setRating(0);
+            holder.total.setText("");
+            holder.ratingtext.setText("");
+            holder.rating.setRating(0);
+        }
 
+        if (productDetail.getSize() != null && productDetail.getSize().equals("No")) {
+            holder.size.setVisibility(View.INVISIBLE);
+            holder.quantity.setGravity(Gravity.CENTER_HORIZONTAL);
+        } else {
+            holder.size.setVisibility(View.VISIBLE);
+            holder.quantity.setGravity(Gravity.START); // Or set it to its original gravity
+        }
 
-//        imageList.add(new SlideModel(productDetail.getImage1()));
-
-
-
-
-
-
+        // Set up image slider
+        List<SlideModel> imageList = new ArrayList<>();
+        if (productDetail.getImage1() != null) {
+            imageList.add(new SlideModel(productDetail.getImage1(), null));
+        }
+        if (productDetail.getImage2() != null) {
+            imageList.add(new SlideModel(productDetail.getImage2(), null));
+        }
+        if (productDetail.getImage3() != null) {
+            imageList.add(new SlideModel(productDetail.getImage3(), null));
+        }
+        if (productDetail.getImage4() != null) {
+            imageList.add(new SlideModel(productDetail.getImage4(), null));
+        }
         holder.imageSlider.setImageList(imageList);
         holder.imageSlider.stopSliding();
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
                 R.array.Number, android.R.layout.simple_spinner_item);
@@ -174,7 +206,7 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 1;
+        return productDetails.size();
     }
     public class ViewHolderd extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -186,6 +218,8 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
         String quantitys;
         TextView title1,price2;
         ImageSlider imageSlider;
+        TextView titlecome,ratingtext,total,discount,offers,desc;
+        RatingBar rating,ratingsk;
 
         public ViewHolderd(@NonNull View itemView) {
             super(itemView);
@@ -196,6 +230,15 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
             imageSlider=itemView.findViewById(R.id.image_slider);
             quantity=itemView.findViewById(R.id.product_quantity_spinner);
             size=itemView.findViewById(R.id.product_size_spinner);
+            titlecome=itemView.findViewById(R.id.reviewTitle);
+            rating=itemView.findViewById(R.id.productRatingBar2);
+            ratingtext=itemView.findViewById(R.id.ratingText);
+
+            ratingsk=itemView.findViewById(R.id.ratingBarsk);
+            total=itemView.findViewById(R.id.reviewCountsk);
+            discount=itemView.findViewById(R.id.originalPrice);
+            offers=itemView.findViewById(R.id.discount);
+            desc=itemView.findViewById(R.id.desc);
 
 
 

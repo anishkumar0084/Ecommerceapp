@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/imageTick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/checked"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="50dp"
+    android:contentDescription="Tick Image"
+    tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvOrderSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your order is successful!"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/imageTick"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvAppreciation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="😊 Thank you for your order!"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/tvOrderSuccess"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnContinueShopping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue Shopping"
+        android:layout_below="@id/tvAppreciation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@android:color/white"
+        android:background="#ffff"
+        tools:ignore="HardcodedText" /> <!-- Replace button_background with the background drawable of your button -->
+
+</RelativeLayout>

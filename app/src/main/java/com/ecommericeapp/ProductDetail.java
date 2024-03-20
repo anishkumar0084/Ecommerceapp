@@ -30,21 +30,26 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.razorpay.PaymentResultWithDataListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Flow;
 
 public class ProductDetail extends AppCompatActivity implements com.ecommericeapp.Adapter.detailAdapter.OnItemClickListener {
     ImageView imageView;
     Spinner quantity,size;
 
     Button Cart,Buy;
-    String url,price,title,Discount,charge,offer,sizek,sht_d,id,image1,image2,image3,image4;
+    String url,price,title,Discount,charge,offer,sizek,sht_d,id,image1,image2,image3,image4,rating,comments;
     String sizes;
     String quantitys;
     TextView title1,price2;
     List<detaiproduct> detaiproduct=new ArrayList<>();
     detailAdapter detailAdapter;
+    String totalRatingk,average;
+    RecyclerView recyclerView;
+    StringBuilder usernamesAndComments;
 
 
 
@@ -53,10 +58,12 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        RecyclerView recyclerView=findViewById(R.id.productdetail);
+         recyclerView=findViewById(R.id.productdetail);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Cart=findViewById(R.id.add_to_cart);
         Buy=findViewById(R.id.buy_now);
+
+
 
 
 
@@ -79,13 +86,9 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
             image3= intent.getStringExtra("image3");
             image4= intent.getStringExtra("image4");
 
-            detaiproduct.add(new detaiproduct(id,title,price,url,image1,image2,image3,image4,Discount,charge,offer,sht_d,sizek));
-            detailAdapter=new detailAdapter(this,detaiproduct,this);
 
 
-            recyclerView.setAdapter(detailAdapter);
 
-            detailAdapter.notifyDataSetChanged();
 
 
 
@@ -97,6 +100,121 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
 
             // Do something with productId
         }
+
+        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference("products").child(id);
+        productRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Product reference exists, fetch product details
+                    DatabaseReference ratingsRef = productRef.child("ratings");
+                    ratingsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+
+                            }
+                            int totalComments = (int) dataSnapshot.getChildrenCount(); // Total number of comments to fetch
+                            final int[] processedComments = {0}; // Counter for processed comments
+
+                            // Fetch ratings and comments for the product
+                                float totalRating = 0;
+                                int ratingCount = 0;
+
+                                for (DataSnapshot ratingSnapshot : dataSnapshot.getChildren()) {
+                                    float ratings = ratingSnapshot.child("rating").getValue(Float.class);
+                                    rating = String.valueOf(ratings);
+
+                                    totalRating += ratings;
+                                    usernamesAndComments = new StringBuilder();
+
+
+                                    String userId = ratingSnapshot.getKey();
+
+                                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("name");
+                                    float finalTotalRating = totalRating;
+                                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot userDataSnapshot) {
+                                            String username = userDataSnapshot.getValue(String.class);
+
+
+                                            String comment = ratingSnapshot.child("comment").getValue(String.class);
+
+
+
+                                            usernamesAndComments.append("Name: ").append(username).append("\n");
+                                            usernamesAndComments.append("Comment: ").append(comment).append("\n\n");
+
+                                            processedComments[0]++;
+
+                                            // Check if all comments have been processed
+                                            if (processedComments[0] == totalComments) {
+                                                // All comments have been fetched, proceed with calculating average and adding product details to the adapter
+                                                if (processedComments[0] > 0) {
+                                                    comments = usernamesAndComments.toString();
+                                                    float averageRating = finalTotalRating / processedComments[0];
+                                                    totalRatingk = String.valueOf(processedComments[0]);
+                                                    average = String.valueOf(averageRating);
+                                                } else {
+                                                    // No ratings found, set default values
+                                                    rating = "N/A";
+                                                    comments = "No comments";
+                                                    totalRatingk = "0";
+                                                    average = "0.0";
+                                                }
+
+                                                // Add product details to adapter
+                                                addProductDetailsToAdapter();
+                                            }
+                                        }
+
+
+
+
+
+
+
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            // Handle error
+                                        }
+                                    });
+
+                                    ratingCount++;
+
+                                }
+
+
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Handle error
+                        }
+                    });
+                } else {
+                    addProductDetailsToAdapter();
+                    // Product reference does not exist, handle this scenario
+                    //                    Toast.makeText(ProductDetail.this, "Product not found", Toast.LENGTH_SHORT).show();
+                    //                    // You might want to finish the activity or display a message to the user
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+            }
+        });
+
+
+
+
+
+
         Buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,6 +229,8 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
                         .putExtra("sht_d",sht_d)
                         .putExtra("size",sizes)
                         .putExtra("Discount",Discount)
+                        .putExtra("id",id)
+
 
 
 
@@ -188,6 +308,22 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
 
 
 
+
+
+
+
+
+
+
+    }
+    private void addProductDetailsToAdapter() {
+
+
+        detaiproduct.add(new detaiproduct(id,title,price,url,image1,image2,image3,image4,Discount,charge,offer,sht_d,sizek,rating,comments,totalRatingk,average));
+        detailAdapter=new detailAdapter(this,detaiproduct,this);
+        recyclerView.setAdapter(detailAdapter);
+
+        detailAdapter.notifyDataSetChanged();
 
 
 

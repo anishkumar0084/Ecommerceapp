@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.ecommericeapp.Data.NotificationHelper;
 import com.ecommericeapp.Data.orderDetail;
 import com.ecommericeapp.databinding.ActivityOrderSummaryBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +47,7 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
     String url,price,title,Discount,charge,offer,sizek,sht_d;
 
     String name,address_type,state,city,pin_code,house_no,road_name,phone;
-    String sizes,quantity,totals,total_amounts,currentDate,orderId;
+    String sizes,quantity,totals,total_amounts,currentDate,orderId,id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,9 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
             charge = intent.getStringExtra("charge");
             sizek = intent.getStringExtra("size");
             sht_d= intent.getStringExtra("sht_d");
+            id= intent.getStringExtra("id");
+
+
             binding.offer.setText(offer);
             binding.shrtDes.setText(sht_d);
 
@@ -105,13 +109,14 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
                 int int2 = Integer.parseInt(price);
                 int total=int1*int2;
                  totals=String.valueOf(total);
+                int chargeValue = intent.getIntExtra("charge", 0);
                 binding.pricesk.setText("₹ "+totals);
-                if (charge.equals("0")||500<int2){
+                if (chargeValue == 0 || 500 < int2) {
                     binding.charge.setText("FREE Delivery");
-                    charge="0";
-
-                }else {
-                    binding.charge.setText("₹ "+charge);
+                    charge = "0";
+                } else {
+                    charge = String.valueOf(chargeValue);
+                    binding.charge.setText("₹ " + charge);
                 }
 
             }
@@ -299,7 +304,7 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    orderDetail orderDetail=new orderDetail(currentDate1,title,sizes,orderId,price,Discount,total_amounts,paymentmethod,url,currentDate,quantity,charge,offer,sht_d,sizek);
+                    orderDetail orderDetail=new orderDetail(currentDate1,title,sizes,orderId,price,Discount,total_amounts,paymentmethod,url,currentDate,quantity,charge,offer,sht_d,sizek,id);
 
                     cartRef.setValue(orderDetail);
 
@@ -357,12 +362,32 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
 
         Button button=dialog.findViewById(R.id.btnCashOnDelivery);
         Button online=dialog.findViewById(R.id.btnOnlinePay);
+        Dialog dialog1=new Dialog(this);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Order_detatil();
                 button.setBackgroundColor(getResources().getColor(R.color.white));
                 online.setBackgroundColor(getResources().getColor(R.color.black));
+
+                dialog1.setContentView(R.layout.ordersucessful);
+                Button button1=dialog1.findViewById(R.id.btnContinueShopping);
+                button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(OrderSummary.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                dialog1.show();
+
+                dialog.dismiss();
+
+                NotificationHelper.showNotification(OrderSummary.this, "Order Placed", "Your order has been successfully placed!", name);
+
+
 
             }
         });

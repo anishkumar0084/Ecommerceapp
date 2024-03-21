@@ -22,6 +22,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EcommericeApp"
         tools:targetApi="31">
+
+        <service android:name=".Data.MyFirebaseMessagingService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
         <activity
             android:name=".Editprofile"
             android:exported="false" />

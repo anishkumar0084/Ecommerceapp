@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
     tools:context=".Fragment.Notify">
+        >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <!-- Background shape for notification -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher_background"
+            android:scaleType="fitXY" />
 
-</FrameLayout>
+        <!-- Product image -->
+        <ImageView
+            android:id="@+id/image_product"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/coupons_image"
+            android:layout_margin="8dp" />
+
+        <!-- Product details -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_product"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <!-- Product name -->
+            <TextView
+                android:id="@+id/text_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <!-- Product description -->
+<!--            <TextView-->
+<!--                android:id="@+id/text_product_description"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Product Description"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textColor="@android:color/black" />-->
+
+            <!-- Discount offer -->
+            <TextView
+                android:id="@+id/text_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50% OFF!"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:background="#673AB7"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+

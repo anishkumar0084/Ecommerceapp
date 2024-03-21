@@ -9,8 +9,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -73,15 +77,11 @@ public class Home extends Fragment implements Clicklistner {
 
 
 
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getContext(), Searchproduct.class);
-                startActivity(intent);
 
 
-            }
-        });
+
+
+
 
 
         ArrayList<String> sliderDataArrayList = new ArrayList<>();
@@ -114,12 +114,29 @@ public class Home extends Fragment implements Clicklistner {
         });
 
 
+
         recyclerView=rootView.findViewById(R.id.product);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
          home=new com.ecommericeapp.Adapter.Home(getContext(),productDetails,this);
 
          myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
+
+        // Implement search functionality
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                home.filter(newText); // Filter adapter data based on search query
+                return true;
+            }
+        });
+
+
 
 
         ArrayList<String> categoryNamesList = new ArrayList<>();

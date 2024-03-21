@@ -12,4 +12,9 @@
         <item name="colorControlNormal">#0DDC16</item> <!-- Yellow color -->
         <!-- You can also customize other attributes as needed -->
     </style>
+    <style name="CustomSearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Customize the text color -->
+        <item name="android:textColor">#FF0000</item> <!-- Change to the color you desire -->
+    </style>
+
 </resources>

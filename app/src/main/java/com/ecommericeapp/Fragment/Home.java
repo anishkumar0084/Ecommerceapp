@@ -40,7 +40,6 @@ public class Home extends Fragment implements Clicklistner {
 
 
     public Home() {
-        // Required empty public constructor
     }
 
 
@@ -57,7 +56,6 @@ public class Home extends Fragment implements Clicklistner {
     RecyclerView recyclerView;
     DatabaseReference myRef1;
     com.ecommericeapp.Adapter.Home home;
-    SliderData mSliderItems;
     ImageSlider imageSlider;
 
 
@@ -68,21 +66,11 @@ public class Home extends Fragment implements Clicklistner {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         SearchView searchView = rootView.findViewById(R.id.search);
         searchView.setQueryHint("Search...");
         imageSlider=rootView.findViewById(R.id.image_slider1);
-
-
-
-
-
-
-
-
-
 
         ArrayList<String> sliderDataArrayList = new ArrayList<>();
 
@@ -114,7 +102,6 @@ public class Home extends Fragment implements Clicklistner {
         });
 
 
-
         recyclerView=rootView.findViewById(R.id.product);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
@@ -122,7 +109,6 @@ public class Home extends Fragment implements Clicklistner {
 
          myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
 
-        // Implement search functionality
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -131,7 +117,7 @@ public class Home extends Fragment implements Clicklistner {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                home.filter(newText); // Filter adapter data based on search query
+                home.filter(newText);
                 return true;
             }
         });
@@ -149,7 +135,6 @@ public class Home extends Fragment implements Clicklistner {
                     categoryNamesList.add(categoryName);
                 }
 
-                // Now you have all category names, proceed with fetching data for each category
                 for (String categoryName : categoryNamesList) {
                     DatabaseReference categoryRef = myRef1.child(categoryName);
                     fetchDataFromNode(categoryName, categoryRef);
@@ -158,7 +143,6 @@ public class Home extends Fragment implements Clicklistner {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle onCancelled event
             }
         });
 

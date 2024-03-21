@@ -56,14 +56,15 @@ public class Notify extends Fragment {
                         String imageUrl = offerSnapshot.child("imageUrl").getValue(String.class);
                         String name = offerSnapshot.child("name").getValue(String.class);
                         String offerText = offerSnapshot.child("offer").getValue(String.class);
+                        String des = offerSnapshot.child("des").getValue(String.class);
 
                         // Check if imageUrl is not null
                         if (imageUrl != null) {
                             // Use Glide to load the image into ImageView
                             Glide.with(requireContext())
                                     .load(imageUrl)
-                                    .placeholder(R.drawable.coupons_image) // Placeholder image while loading
-                                    .error(R.drawable.wishlist_image) // Error image if loading fails
+//                                    .placeholder(R.drawable.coupons_image) // Placeholder image while loading
+//                                    .error(R.drawable.wishlist_image) // Error image if loading fails
                                     .into(fragmentNotifyBinding.imageProduct);
                         } else {
                             // Handle case where imageUrl is null
@@ -73,6 +74,7 @@ public class Notify extends Fragment {
 
                         // Set name and offer text
                         fragmentNotifyBinding.textProductName.setText(name);
+                        fragmentNotifyBinding.textProductDescription.setText(des);
                         fragmentNotifyBinding.textDiscount.setText(offerText);
                     }
                 } else {

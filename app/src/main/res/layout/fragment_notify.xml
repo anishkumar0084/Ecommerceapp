@@ -21,7 +21,6 @@
             android:id="@+id/image_product"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/coupons_image"
             android:layout_margin="8dp" />
 
         <!-- Product details -->
@@ -43,13 +42,14 @@
                 android:textStyle="bold" />
 
             <!-- Product description -->
-<!--            <TextView-->
-<!--                android:id="@+id/text_product_description"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Product Description"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textColor="@android:color/black" />-->
+            <TextView
+                android:id="@+id/text_product_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Description"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
 
             <!-- Discount offer -->
             <TextView
@@ -62,7 +62,7 @@
                 android:background="#673AB7"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
     </RelativeLayout>

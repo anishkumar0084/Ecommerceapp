@@ -80,22 +80,26 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
             holder.titlecome.setText("");
         }
 
-        if (productDetail.getRating() != null && productDetail.getAverage() != null && productDetail.getTotalratingk() != null) {
-            float fs = Float.parseFloat(productDetail.getRating());
+        if ( productDetail.getAverage() != null && productDetail.getTotalratingk() != null) {
+//            float fs = Float.parseFloat(productDetail.getRating());
             float fsk = Float.parseFloat(productDetail.getAverage());
             int fskg = Integer.parseInt(productDetail.getTotalratingk());
             holder.ratingsk.setRating(fsk);
             holder.total.setText("(" + fskg + ")" + " reviews");
-//
-            String ratingString = String.format("%.1f", fs); // Convert float to string with one decimal place
-            holder.ratingtext.setText("Rating: " + ratingString);
 
-            holder.rating.setRating(fs);
+//
+//            String ratingString = String.format("%.1f", fs);
+            // Convert float to string with one decimal place
+//                                    Toast.makeText(context,String.valueOf(fs),Toast.LENGTH_SHORT).show();
+
+//            holder.ratingtext.setText("Rating: " + ratingString);
+
+//            holder.rating.setRating(fs);
         } else {
             holder.ratingsk.setRating(0);
             holder.total.setText("");
-            holder.ratingtext.setText("");
-            holder.rating.setRating(0);
+//            holder.ratingtext.setText("");
+//            holder.rating.setRating(0);
         }
 
         if (productDetail.getSize() != null && productDetail.getSize().equals("No")) {
@@ -138,13 +142,14 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedValue = parentView.getItemAtPosition(position).toString();
 
-                if (selectedValue.equals("1")) {
+
+                if (selectedValue.equals("Qty 1")) {
                     quantitys="1";
 
-                } else if (selectedValue.equals("2")) {
+                } else if (selectedValue.equals("Qty 2")) {
                     quantitys="2";
 
-                } else if (selectedValue.equals("3")) {
+                } else if (selectedValue.equals("Qty 3")) {
                     quantitys="3";
 
                 }else  {
@@ -165,13 +170,13 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedValue = parentView.getItemAtPosition(position).toString();
                 // Perform tasks based on the selected value
-                if (selectedValue.equals("M")) {
+                if (selectedValue.equals("Size M")) {
                     sizes="M";
 
-                } else if (selectedValue.equals("X")) {
+                } else if (selectedValue.equals("Size X")) {
                     sizes="X";
 
-                } else if (selectedValue.equals("L")) {
+                } else if (selectedValue.equals("Size l")) {
                     sizes="L";
                 }else {
                     sizes="XL";
@@ -231,8 +236,8 @@ public class detailAdapter extends RecyclerView.Adapter<detailAdapter.ViewHolder
             quantity=itemView.findViewById(R.id.product_quantity_spinner);
             size=itemView.findViewById(R.id.product_size_spinner);
             titlecome=itemView.findViewById(R.id.reviewTitle);
-            rating=itemView.findViewById(R.id.productRatingBar2);
-            ratingtext=itemView.findViewById(R.id.ratingText);
+//            rating=itemView.findViewById(R.id.productRatingBar2);
+//            ratingtext=itemView.findViewById(R.id.ratingText);
 
             ratingsk=itemView.findViewById(R.id.ratingBarsk);
             total=itemView.findViewById(R.id.reviewCountsk);

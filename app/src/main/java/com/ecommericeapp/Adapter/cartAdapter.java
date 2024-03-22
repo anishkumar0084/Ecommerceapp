@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,7 @@ import java.util.List;
 public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHolder> {
     private List<cartdata> productList;
     Context context;
+    String quantitys;
 
     public cartAdapter(List<cartdata> productList,Context context) {
         this.productList = productList;
@@ -46,11 +50,46 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHol
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         cartdata product = productList.get(position);
         holder.textViewProductName.setText(product.getTitle());
-        holder.textViewProductPrice.setText("₹ "+String.valueOf(product.getPrice()));
-        holder.quantity.setText("Qty ;"+product.getQuantitys());
-        holder.shortd.setText(product.getSht_d());
-        holder.offer.setText(product.getOffer());
+        holder.textViewProductPrice.setText("Discount ₹ "+String.valueOf(product.getDiscount()));
+//        holder.quantity.setText("Qty "+product.getQuantitys());
+        holder.shortd.setText("₹ "+product.getPrice());
+        holder.offer.setText("Offer "+product.getOffer());
         Glide.with(holder.itemView).load(product.getImage()).fitCenter().into(holder.imageView);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                R.array.Number, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        holder.quantity.setAdapter(adapter);
+
+        holder.quantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedValue = parentView.getItemAtPosition(position).toString();
+
+
+                if (selectedValue.equals("Qty 1")) {
+                    quantitys="1";
+
+                } else if (selectedValue.equals("Qty 2")) {
+                    quantitys="2";
+
+                } else if (selectedValue.equals("Qty 3")) {
+                    quantitys="3";
+
+                }else  {
+
+
+                }
+//                listener.onButtonClick(sizes,quantitys);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing if nothing is selected
+            }
+        });
+
 
         holder.buy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +102,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHol
                         .putExtra("price",productList.get(itemPosition).getPrice())
                         .putExtra("title", productList.get(itemPosition).getTitle())
                         . putExtra("sizes", productList.get(itemPosition).getSizek())
-                        .putExtra("quantity",productList.get(itemPosition).getQuantitys())
+                        .putExtra("quantity",quantitys)
                         .putExtra("charge",productList.get(itemPosition).getCharge())
                         .putExtra("offer",productList.get(itemPosition).getOffer())
                         .putExtra("sht_d",productList.get(itemPosition).getSht_d())
@@ -81,7 +120,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHol
             @Override
             public void onClick(View view) {
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Get the current user ID
-                // Replace this with the name of the cart you want to delete
                 int itemPosition = holder.getAdapterPosition();
                 String title = productList.get(itemPosition).getPrice();
 //                Toast.makeText(view.getContext(), "ans"+title,Toast.LENGTH_SHORT).show();
@@ -96,8 +134,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHol
                             String productName = cartSnapshot.child("price").getValue(String.class);
                             if (productName.equals(title)) {
                                 cartSnapshot.getRef().removeValue();
-                                // Remove the cart data from the database
-                                // Cart data deleted successfully
                                 productList.remove(itemPosition);
                                 notifyItemRemoved(itemPosition);
 
@@ -109,7 +145,6 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHol
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        // Handle errors
                     }
                 });
 
@@ -126,10 +161,12 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.ProductViewHol
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView textViewProductName;
-        TextView textViewProductPrice,quantity,offer,shortd;
+        TextView textViewProductPrice,offer,shortd;
         ImageView imageView;
 
         Button remove,buy;
+        Spinner quantity;
+
 
         ProductViewHolder(View itemView) {
             super(itemView);

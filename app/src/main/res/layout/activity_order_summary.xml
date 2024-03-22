@@ -52,9 +52,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textStyle="bold"
+
             android:layout_marginTop="8dp"
             android:text="Your additional text here"
-            android:textColor="#A095B4"/>
+            android:textColor="@color/black"/>
 
 
         <TextView

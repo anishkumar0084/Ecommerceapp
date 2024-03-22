@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
@@ -72,6 +73,9 @@ public class Home extends Fragment implements Clicklistner {
         searchView.setQueryHint("Search...");
         imageSlider=rootView.findViewById(R.id.image_slider1);
 
+
+
+
         ArrayList<String> sliderDataArrayList = new ArrayList<>();
 
 
@@ -109,6 +113,8 @@ public class Home extends Fragment implements Clicklistner {
 
          myRef1 = FirebaseDatabase.getInstance().getReference().child("categories");
 
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -117,10 +123,13 @@ public class Home extends Fragment implements Clicklistner {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                home.filter(newText);
-                return true;
+//                home.getFilter().filter(newText);
+                filter(newText);
+                return false;
             }
         });
+
+
 
 
 
@@ -148,6 +157,8 @@ public class Home extends Fragment implements Clicklistner {
 
 
         recyclerView.setAdapter(home);
+
+//
 
         return rootView;
 
@@ -213,4 +224,37 @@ public class Home extends Fragment implements Clicklistner {
 
 
     }
+
+    private void filter(String text) {
+        // creating a new array list to filter our data.
+        ArrayList<productDetail> filteredlist = new ArrayList<productDetail>();
+
+        // running a for loop to compare elements.
+        for (productDetail item : productDetails) {
+            // checking if the entered string matched with any item of our recycler view.
+            if (item.getTitle().toLowerCase().contains(text.toLowerCase())||item.getSrt_desc().toLowerCase().contains(text.toLowerCase())) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item);
+            }
+//            if (item.getSrt_desc().toLowerCase().contains(text.toLowerCase())){
+//                filteredlist.add(item);
+//
+//            }
+        }
+        if (filteredlist.isEmpty()) {
+
+//            recyclerView.setAdapter(home);
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            home.filterList(filteredlist);
+        }
+    }
+
+
+
 }

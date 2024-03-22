@@ -2,9 +2,11 @@ package com.ecommericeapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.utils.ViewSpline;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
@@ -37,19 +39,18 @@ import java.util.List;
 import java.util.concurrent.Flow;
 
 public class ProductDetail extends AppCompatActivity implements com.ecommericeapp.Adapter.detailAdapter.OnItemClickListener {
-    ImageView imageView;
-    Spinner quantity,size;
+
 
     Button Cart,Buy;
     String url,price,title,Discount,charge,offer,sizek,sht_d,id,image1,image2,image3,image4,rating,comments;
     String sizes;
     String quantitys;
-    TextView title1,price2;
     List<detaiproduct> detaiproduct=new ArrayList<>();
     detailAdapter detailAdapter;
     String totalRatingk,average;
     RecyclerView recyclerView;
     StringBuilder usernamesAndComments;
+    float ratings;
 
 
 
@@ -62,13 +63,6 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Cart=findViewById(R.id.add_to_cart);
         Buy=findViewById(R.id.buy_now);
-
-
-
-
-
-
-
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -86,19 +80,6 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
             image3= intent.getStringExtra("image3");
             image4= intent.getStringExtra("image4");
 
-
-
-
-
-
-
-
-
-
-
-
-
-            // Do something with productId
         }
 
         DatabaseReference productRef = FirebaseDatabase.getInstance().getReference("products").child(id);
@@ -106,28 +87,25 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // Product reference exists, fetch product details
                     DatabaseReference ratingsRef = productRef.child("ratings");
                     ratingsRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
+                                int totalComments = (int) dataSnapshot.getChildrenCount(); // Total number of comments to fetch
+                                final int[] processedComments = {0}; // Counter for processed comments
 
-                            }
-                            int totalComments = (int) dataSnapshot.getChildrenCount(); // Total number of comments to fetch
-                            final int[] processedComments = {0}; // Counter for processed comments
-
-                            // Fetch ratings and comments for the product
                                 float totalRating = 0;
-                                int ratingCount = 0;
 
                                 for (DataSnapshot ratingSnapshot : dataSnapshot.getChildren()) {
-                                    float ratings = ratingSnapshot.child("rating").getValue(Float.class);
-                                    rating = String.valueOf(ratings);
-
+                                    ratings = ratingSnapshot.child("rating").getValue(Float.class);
                                     totalRating += ratings;
-                                    usernamesAndComments = new StringBuilder();
 
+
+
+
+
+                                    usernamesAndComments = new StringBuilder();
 
                                     String userId = ratingSnapshot.getKey();
 
@@ -137,14 +115,15 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot userDataSnapshot) {
                                             String username = userDataSnapshot.getValue(String.class);
-
-
                                             String comment = ratingSnapshot.child("comment").getValue(String.class);
+                                            float ratingk = ratingSnapshot.child("rating").getValue(Float.class);
 
-
-
+                                            // Append username and comment to your StringBuilder or any other appropriate logic
                                             usernamesAndComments.append("Name: ").append(username).append("\n");
-                                            usernamesAndComments.append("Comment: ").append(comment).append("\n\n");
+                                            usernamesAndComments.append("Comment: ").append(comment).append("\n");
+                                            usernamesAndComments.append("Rating: ").append(ratingk).append("\n\n");
+
+
 
                                             processedComments[0]++;
 
@@ -153,11 +132,11 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
                                                 // All comments have been fetched, proceed with calculating average and adding product details to the adapter
                                                 if (processedComments[0] > 0) {
                                                     comments = usernamesAndComments.toString();
+//
                                                     float averageRating = finalTotalRating / processedComments[0];
                                                     totalRatingk = String.valueOf(processedComments[0]);
                                                     average = String.valueOf(averageRating);
                                                 } else {
-                                                    // No ratings found, set default values
                                                     rating = "N/A";
                                                     comments = "No comments";
                                                     totalRatingk = "0";
@@ -169,26 +148,20 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
                                             }
                                         }
 
-
-
-
-
-
-
-
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError databaseError) {
                                             // Handle error
                                         }
                                     });
-
-                                    ratingCount++;
-
                                 }
-
-
-
-
+                            } else {
+                                // If no ratings are found, set default values and add product details to adapter
+                                rating = "N/A";
+                                comments = "No comments";
+                                totalRatingk = "0";
+                                average = "0.0";
+                                addProductDetailsToAdapter();
+                            }
                         }
 
                         @Override
@@ -198,9 +171,6 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
                     });
                 } else {
                     addProductDetailsToAdapter();
-                    // Product reference does not exist, handle this scenario
-                    //                    Toast.makeText(ProductDetail.this, "Product not found", Toast.LENGTH_SHORT).show();
-                    //                    // You might want to finish the activity or display a message to the user
                 }
             }
 
@@ -209,7 +179,6 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
                 // Handle error
             }
         });
-
 
 
 
@@ -251,7 +220,6 @@ public class ProductDetail extends AppCompatActivity implements com.ecommericeap
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-// Authenticate the user (Firebase Authentication)
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 FirebaseUser currentUser = mAuth.getCurrentUser();
 

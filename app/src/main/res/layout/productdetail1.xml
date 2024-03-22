@@ -1,15 +1,15 @@
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
 
@@ -49,6 +49,7 @@
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_below="@id/image_slider"
         android:text="Product Name"
         android:layout_marginTop="5dp"
@@ -69,6 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
+
+            android:textColor="@color/white"
             android:rating="4.5" />
 
         <TextView
@@ -76,6 +79,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(1.9K reviews)"
+            android:textColor="@color/black"
+
             android:layout_marginStart="8dp" />
     </LinearLayout>
 
@@ -85,6 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ratingAndReviews"
         android:text="₹949"
+        android:textColor="@color/black"
         android:layout_marginTop="5dp"
         android:textSize="16sp"
         android:textStyle="bold"  />
@@ -93,6 +99,8 @@
         android:id="@+id/originalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#0ED316"
+
         android:layout_below="@id/price4"
         android:text="₹3,199"
         android:layout_marginTop="5dp"
@@ -104,6 +112,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/originalPrice"
         android:layout_marginTop="5dp"
+        android:textColor="#5C10E1"
+
         android:text="70% off"
         android:textSize="14sp"  />
 
@@ -123,7 +133,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#9783BC"
+                    android:background="#B2A3CC"
+
                     android:prompt="@string/select_quantity"
                     />
 
@@ -132,9 +143,22 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:prompt="@string/select_quantity1"
+                    android:background="#CCA4D3"
                     android:layout_weight="1" />
 
             </LinearLayout>
+
+    <TextView
+        android:id="@+id/desc1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product Detail "
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_below="@id/layot"
+        android:layout_marginTop="16dp"/>
+
 
     <TextView
         android:id="@+id/desc"
@@ -142,20 +166,22 @@
         android:layout_height="wrap_content"
         android:text="Ratings &amp; Reviews"
         android:textStyle="bold"
-        android:layout_below="@id/layot"
+        android:textColor="#423F3F"
+        android:layout_below="@id/desc1"
         android:layout_marginTop="16dp"/>
-
 
 
     <TextView
         android:id="@+id/ratingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ratings &amp; Reviews"
-        android:textStyle="bold"
-
         android:layout_below="@id/desc"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:textColor="#3F51B5"
+        android:textSize="20sp"
+
+        android:text="Ratings &amp; Reviews"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/ratingsContainer"
@@ -193,7 +219,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="10dp"
-            android:background="#D6DBDF"
+            android:background="@color/white"
             >
 
 
@@ -205,6 +231,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"/>
@@ -214,22 +241,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <RatingBar
-                    android:id="@+id/productRatingBar2"
-                    android:layout_width="wrap_content"
-                    style="@style/CustomRatingBar"
-                    android:layout_height="wrap_content"
-                    android:isIndicator="true"
-                    />
+<!--                <RatingBar-->
+<!--                    android:id="@+id/productRatingBar2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    style="@style/CustomRatingBar"-->
 
-                <TextView
-                    android:id="@+id/ratingText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_gravity="center"
-                    android:text="Rating: "
-                    android:textSize="16sp" />
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:isIndicator="true"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/ratingText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:text="Rating: "-->
+<!--                    android:textSize="16sp" />-->
             </LinearLayout>
 
 

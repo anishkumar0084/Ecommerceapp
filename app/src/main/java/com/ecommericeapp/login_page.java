@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,7 +31,9 @@ public class login_page extends AppCompatActivity {
     FirebaseAuth mauth;
     DatabaseReference databaseReference;
     Button signInButton;
+    TextView forgot;
     Button registrationButton;
+    String userEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,10 @@ public class login_page extends AppCompatActivity {
         mauth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference();
         FirebaseUser user=mauth.getCurrentUser();
+
+
+
+
 
         if (user!= null) {
             // User is signed in, go to main activity

@@ -14,6 +14,7 @@ import com.ecommericeapp.OrderSummary;
 import com.ecommericeapp.Orderhistory;
 import com.ecommericeapp.R;
 import com.ecommericeapp.databinding.FragmentAccountBinding;
+import com.ecommericeapp.login_page;
 import com.ecommericeapp.saved_address;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -45,6 +46,9 @@ public class Account extends Fragment {
             public void onClick(View view) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 mAuth.signOut();
+                Intent intent=new Intent(getContext(), login_page.class);
+                startActivity(intent);
+
             }
         });
         binding.savedAddress.setOnClickListener(new View.OnClickListener() {

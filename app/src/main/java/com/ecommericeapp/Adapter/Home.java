@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,37 +27,29 @@ import com.ecommericeapp.Searchproduct;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Home  extends RecyclerView.Adapter<Home.viewholder>{
+public class Home  extends RecyclerView.Adapter<Home.viewholder> {
 
 
     Context context;
     productDetail data;
     ArrayList<productDetail> productDetail;
     private Clicklistner clicklistner;
-    private ArrayList<productDetail> filteredProductList;
+     ArrayList<productDetail> filteredProductList;
 
     public Home(Context context , ArrayList<productDetail> productdetail,Clicklistner clicklistner) {
         this.context=context;
         this.productDetail=productdetail;
-        this.filteredProductList = new ArrayList<>(productdetail);
+        this.filteredProductList = new ArrayList<productDetail>(productdetail);
         this.clicklistner=clicklistner;
 
     }
-    public void filter(String query) {
-        filteredProductList.clear();
-        if (query.isEmpty()) {
-            filteredProductList.addAll(productDetail); // Show original list if query is empty
-        } else {
-            query = query.toLowerCase();
-            for (productDetail product : productDetail) {
-                // Add products that match the query (e.g., by name or description)
-                if (product.getTitle().toLowerCase().contains(query) ||
-                        product.getSrt_desc().toLowerCase().contains(query)) {
-                    filteredProductList.add(product);
-                }
-            }
-        }
-        notifyDataSetChanged(); // Refresh RecyclerView
+    public void filterList(ArrayList<productDetail> filterlist) {
+        // below line is to add our filtered
+        // list in our course array list.
+        productDetail = filterlist;
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged();
     }
 
 
@@ -100,6 +94,10 @@ public class Home  extends RecyclerView.Adapter<Home.viewholder>{
     public int getItemCount() {
         return productDetail.size();
     }
+
+
+
+
 
     public class viewholder extends RecyclerView.ViewHolder{
         ImageView image;

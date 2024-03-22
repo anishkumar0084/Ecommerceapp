@@ -172,6 +172,7 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
                         binding.Address.setVisibility(View.INVISIBLE);
                         binding.phone.setVisibility(View.INVISIBLE);
                         binding.save.setVisibility(View.VISIBLE);
+                        binding.continuef.setVisibility(View.INVISIBLE);
                         binding.save.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -252,7 +253,9 @@ public class OrderSummary extends AppCompatActivity implements PaymentResultList
 
             binding.gh.setText("Payment Method-"+intent.getStringExtra("payment"));
             binding.gh.setTextSize(30);
-            binding.underOrderSummary.setText("order id="+intent.getStringExtra("orderid"));
+            binding.underOrderSummary.setText("Order id = "+intent.getStringExtra("orderid"));
+            binding.underOrderSummary.setTextSize(20);
+
 
 
 

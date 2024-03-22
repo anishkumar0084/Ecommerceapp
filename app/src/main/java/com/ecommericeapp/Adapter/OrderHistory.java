@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,8 +72,8 @@ public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> 
                     TextView textView3=dialog.findViewById(R.id.productDescription12);
 
                     textView.setText(orderDetail.getTitle());
-                    textView2.setText(orderDetail.getPrice());
-                    textView3.setText(orderDetail.getSht_d());
+                    textView2.setText("Rs "+orderDetail.getPrice());
+                    textView3.setText("");
 
                     RatingBar ratingBars = dialog.findViewById(R.id.productRatingBar);
                     EditText commentEditText = dialog.findViewById(R.id.commentEditText);
@@ -87,7 +88,6 @@ public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> 
                             FirebaseUser currentUser = mAuth.getCurrentUser();
                             String userId = currentUser.getUid(); // Get user ID
 
-                            // Get rating and comment
 
                             // Save data to Firebase Realtime Database
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -104,6 +104,14 @@ public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> 
                         }
                     });
                 }
+            }
+        });
+
+        holder.arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderdetailk.onItemclick(orderDetail);
+
             }
         });
 
@@ -129,7 +137,8 @@ public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> 
         TextView date;
         TextView title;
         RatingBar ratingBar;
-        CardView cardView;
+        ImageView arrow;
+         CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageview=itemView.findViewById(R.id.productimage2);
@@ -137,6 +146,7 @@ public class OrderHistory extends RecyclerView.Adapter<OrderHistory.ViewHolder> 
             title=itemView.findViewById(R.id.title);
             ratingBar=itemView.findViewById(R.id.product_ratingbar1);
             cardView=itemView.findViewById(R.id.cardsk);
+            arrow=itemView.findViewById(R.id.arrowButton);
         }
     }
 }

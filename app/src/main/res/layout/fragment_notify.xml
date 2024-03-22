@@ -9,21 +9,18 @@
     tools:context=".Fragment.Notify">
         >
 
-        <!-- Background shape for notification -->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_launcher_background"
             android:scaleType="fitXY" />
 
-        <!-- Product image -->
         <ImageView
             android:id="@+id/image_product"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="8dp" />
 
-        <!-- Product details -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +28,6 @@
             android:layout_marginStart="16dp"
             android:orientation="vertical">
 
-            <!-- Product name -->
             <TextView
                 android:id="@+id/text_product_name"
                 android:layout_width="match_parent"
@@ -41,7 +37,6 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
 
-            <!-- Product description -->
             <TextView
                 android:id="@+id/text_product_description"
                 android:layout_width="match_parent"
@@ -51,7 +46,6 @@
                 android:textSize="16sp"
                 android:textColor="@android:color/black" />
 
-            <!-- Discount offer -->
             <TextView
                 android:id="@+id/text_discount"
                 android:layout_width="wrap_content"

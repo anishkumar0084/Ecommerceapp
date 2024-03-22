@@ -6,18 +6,18 @@
     <string name="select_quantity1">Size</string>
 
     <string-array name="Number">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>Qty 1</item>
+        <item>Qty 2</item>
+        <item>Qty 3</item>
         <item>More</item>
 
     </string-array>
 
     <string-array name="Size">
-        <item>M</item>
-        <item>l</item>
-        <item>X</item>
-        <item>XL</item>
+        <item>Size M</item>
+        <item>Size l</item>
+        <item>Size X</item>
+        <item>Size XL</item>
 
     </string-array>
 </resources>
